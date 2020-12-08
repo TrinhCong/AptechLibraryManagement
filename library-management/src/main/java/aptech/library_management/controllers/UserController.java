@@ -29,22 +29,22 @@ public class UserController {
 		logger.debug("Received request to edit person id : "+id);				
 		ModelAndView mav = new ModelAndView();		
  		mav.setViewName("edit");
- 		User person = null;
+ 		User user = null;
  		if (id == null) {
- 			person = new User();
+ 			user = new User();
  		} else {
- 			person = userRepository.find(id);
+ 			user = userRepository.find(id);
  		}
  		
- 		mav.addObject("person", person);
+ 		mav.addObject("person", user);
 		return mav;
 		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,value="edit") 
-	public String savePerson(@ModelAttribute User person) {
-		logger.debug("Received postback on person "+person);		
-		userRepository.save(person);
+	public String savePerson(@ModelAttribute User user) {
+		logger.debug("Received postback on person "+user);		
+		userRepository.save(user);
 		return "redirect:list";
 		
 	}

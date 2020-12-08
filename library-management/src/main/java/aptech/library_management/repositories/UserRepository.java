@@ -26,12 +26,12 @@ public class UserRepository {
 	}
 	
 	@Transactional
-	public User save(User person) {
-		if (person.getId() == null) {
-			entityManager.persist(person);
-			return person;
+	public User save(User user) {
+		if (user.getId() == null) {
+			entityManager.persist(user);
+			return user;
 		} else {
-			return entityManager.merge(person);
+			return entityManager.merge(user);
 		}		
 	}	
 	

@@ -1,6 +1,7 @@
 package aptech.library_management.models;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,95 +12,110 @@ import javax.persistence.Id;
 @Entity
 public class User implements Serializable {
 
-	private static final long serialVersionUID = -1308795024262635690L;
+	public User() {
+
+	}
+
+	public User(int id, String user_name, String password, String display_name, String address, int gender, int age,
+			Date datetime) {
+		super();
+		this.id = id;
+		this.user_name = user_name;
+		this.password = password;
+		this.display_name = display_name;
+		this.address = address;
+		this.gender = gender;
+		this.age = age;
+		this.datetime = datetime;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
 
 	@Column
-	private String firstName;
+	private String user_name;
 
 	@Column
-	private String lastName;
+	private String password;
 
-	public User() {
-	}
+	@Column
+	private String display_name;
 
-	public User(String firstName, String lastName) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
+	@Column
+	private String address;
 
-	public Long getId() {
+	@Column
+	private int gender;
+
+	@Column
+	private int age;
+
+	@Column
+	private Date datetime;
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getUser_name() {
+		return user_name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-
-		return super.toString() + " name = " + firstName + " " + lastName
-				+ " id = " + id;
+	public String getDisplay_name() {
+		return display_name;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((lastName == null) ? 0 : lastName.hashCode());
-		return result;
+	public void setDisplay_name(String display_name) {
+		this.display_name = display_name;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		return true;
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getGender() {
+		return gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Date getDatetime() {
+		return datetime;
+	}
+
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
 	}
 
 }

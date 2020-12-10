@@ -27,5 +27,12 @@ public class HomeController {
 		return "home";
 	}
 	
-
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String Admin(Model model) {
+		logger.info("Welcome home!");
+		model.addAttribute("controllerMessage",
+				"This is the message from the controller Admin!");
+		return "home";
+	}
+	
 }

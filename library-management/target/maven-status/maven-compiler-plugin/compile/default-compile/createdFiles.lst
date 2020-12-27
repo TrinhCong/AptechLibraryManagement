@@ -1,0 +1,8 @@
+aptech/library/management/controllers/AuthorController.class
+aptech/library/management/repositories/AuthorRepository.class
+aptech/library/management/repositories/IAuthorRepository.class
+aptech/library/management/controllers/HomeController.class
+aptech/library/management/configs/MvcConfig.class
+aptech/library/management/configs/ApplicationContext.class
+aptech/library/management/configs/Startup.class
+aptech/library/management/models/Author.class

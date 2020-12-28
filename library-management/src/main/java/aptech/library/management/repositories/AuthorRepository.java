@@ -4,6 +4,8 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,8 @@ import aptech.library.management.models.Author;
     public void deleteAuthor(int theId);
 }
 
-
 @Repository
+@Transactional
 public class AuthorRepository implements IAuthorRepository {
 
     @Autowired

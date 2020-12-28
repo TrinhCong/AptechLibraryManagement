@@ -30,6 +30,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="/home/congtrinh/Eprojects/mysql-connector-java-8.0.22.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/demo/AptechLibraryManagement/mysql-connector-java-8.0.22.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

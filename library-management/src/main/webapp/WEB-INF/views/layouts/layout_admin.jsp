@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="dec"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,7 +8,7 @@
 <html>
 <head>
 
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title><dec:title default="Trang chủ" /></title>
 
@@ -46,6 +47,43 @@
 	href="<c:url value='/resources/assets/layouts/layout2/css/themes/light_custom.css'/>" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/assets/layouts/layout2/css/custom.css'/>" />
+
+<script
+	src="<c:url value='/resources/assets/global/plugins/jquery.min.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/bootstrap/js/bootstrap.min.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/mustache.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/js.cookie.min.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/jquery.blockui.min.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js' />"
+	type="text/javascript"></script>
+<script
+	src="<c:url value='/resources/assets/apps/scripts/datetime.format.js' />"></script>
+<script
+	src="<c:url value='/resources/assets/global/scripts/enums.js' />"></script>
+<script src="<c:url value='/resources/assets/global/scripts/app.js' />"></script>
+<script
+	src="<c:url value='/resources/assets/global/plugins/bootbox/bootbox.min.js' />"></script>
+<script
+	src="<c:url value='/resources/assets/layouts/layout2/scripts/layout.js' />"></script>
 </head>
 
 <body
@@ -105,50 +143,6 @@
 	<%@ include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
 	<!-- END FOOTER -->
 
-	<script
-		src="<c:url value='/resources/assets/global/plugins/jquery.min.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/bootstrap/js/bootstrap.min.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/mustache.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/js.cookie.min.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/jquery.blockui.min.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js' />"
-		type="text/javascript"></script>
-	<script
-		src="<c:url value='/resources/assets/apps/scripts/datetime.format.js' />"></script>
-	<script
-		src="<c:url value='/resources/assets/global/scripts/enums.js' />"></script>
-	<!-- END CORE PLUGINS -->
-	<!-- BEGIN PAGE LEVEL PLUGINS -->
-	<!-- END PAGE LEVEL PLUGINS -->
-	<!-- BEGIN THEME GLOBAL SCRIPTS -->
-	<script src="<c:url value='/resources/assets/global/scripts/app.js' />"></script>
-	<script
-		src="<c:url value='/resources/assets/global/plugins/bootbox/bootbox.min.js' />"></script>
-	<!-- END THEME GLOBAL SCRIPTS -->
-	<!-- BEGIN PAGE LEVEL SCRIPTS -->
-	<!-- END PAGE LEVEL SCRIPTS -->
-	<!-- BEGIN THEME LAYOUT SCRIPTS -->
-	<script
-		src="<c:url value='/resources/assets/layouts/layout2/scripts/layout.js' />"></script>
-	<!-- END THEME LAYOUT SCRIPTS -->
+
 </body>
 </html>

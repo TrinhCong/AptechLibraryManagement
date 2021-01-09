@@ -87,8 +87,9 @@ var AreaConfig = function() {
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				dataType: 'json',
-				url: "/AreaConfig/ListConfig",
+				url: "/library-management/author/list",
 				data: function(d) {
+				console.log(d);
 					return JSON.stringify(d);
 				},
 			},

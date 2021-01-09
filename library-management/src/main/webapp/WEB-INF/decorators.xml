@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/WEB-INF/views/layouts">
 	<decorator name="admin" page="layout_admin.jsp">
-		<pattern>/home*</pattern>
+		<pattern>/*</pattern>
 	</decorator>
 </decorators>

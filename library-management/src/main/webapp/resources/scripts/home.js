@@ -134,7 +134,6 @@ var AreaConfig = function() {
 					targets: [5]
 				}
 			],
-
 			"initComplete": function(settings, json) {
 				$(".dataTables_filter input")
 					.unbind()

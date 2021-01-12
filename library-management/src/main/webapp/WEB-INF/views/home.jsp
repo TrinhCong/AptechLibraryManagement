@@ -61,58 +61,55 @@
 		<div class="modal-body">
 			<form action="/NWPProduct/Update" method="post"
 				class="form-horizontal data-form" id="form-update">
-				<input type="hidden" id="product-id" value="0" name="Product_Id" />
+				<input type="hidden" id="product-id" value="0" name="id" />
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Tên sản phẩm<span
+					<label for="" class="control-label col-sm-4">Tên người mượn sách<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" name="Product_Name"
+						<input type="text" class="form-control" name="displayName"
 							required />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Thông tin mô
-						tả về sản phẩm</label>
+					<label for="" class="control-label col-sm-4">Tên đăng nhập<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
-						<textarea name="Product_Desc" id="" cols="30" rows="5"
+						<input type="text" class="form-control" name="userName"
+							required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Mật khẩu<span
+						class="required">*</span></label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" name="password"
+							required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Tuổi<span
+						class="required">*</span></label>
+					<div class="col-sm-8">
+						<input type="number" class="form-control" name="age"
+							required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Giới tính<span
+						class="required">*</span></label>
+					<div class="col-sm-8">
+						<select class="form-control" name="gender">
+							<option value="1">Nam</option>
+							<option value="2">Nữ</option>
+							<option value="3">Khác</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Địa chỉ</label>
+					<div class="col-sm-8">
+						<textarea name="address" id="Product_Desc" cols="30" rows="5"
 							class="form-control"></textarea>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Hạn dự báo<span
-						class="required">*</span></label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" name="Leadtime" required />
-						<small> (không quá 3 ký tự và đầy đủ. Ví dụ: 072) </small>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Danh sách các
-						hạn dự báo<span class="required">*</span>
-					</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control fr-list" name="Fr_List"
-							required /> <small> (không quá 3 ký tự và đầy đủ, các
-							hạn dự báo cách nhau dấu ";" giá trị cuối phải bằng hạn dự báo
-							tối đa. Ví dụ: 000; 006; 012; 024; 048; 072) </small>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Đường dẫn chứa
-						sản phẩm<span class="required">*</span>
-					</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" name="Product_Path"
-							required />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Tên file sản
-						phẩm<br />(tên qui ước)<span class="required">*</span>
-					</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" name="Product_File"
-							required />
 					</div>
 				</div>
 			</form>
@@ -130,34 +127,58 @@
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
 				aria-hidden="true"></button>
-			<h4 class="modal-title">Tạo mới sản phẩm dự báo số trị</h4>
+			<h4 class="modal-title">Tạo người mượn sách mới</h4>
 		</div>
 		<div class="modal-body">
-			<form action="/NWPProduct/Create" class="form-horizontal data-form"
+			<form action="/library-management/user/create" class="form-horizontal data-form"
 				method="post" id="form-create">
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="">Lựa chọn mô
-						hình<span class="required">*</span>
-					</label>
-					<div class="col-sm-8">
-						<select class="form-control select2" name="NWP_Model_Id">
-
-						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Tên sản phẩm<span
+					<label for="" class="control-label col-sm-4">Tên người mượn sách<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" name="Product_Name"
+						<input type="text" class="form-control" name="displayName"
 							required />
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Mô tả về sản
-						phẩm</label>
+					<label for="" class="control-label col-sm-4">Tên đăng nhập<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
-						<textarea name="Product_Desc" id="Product_Desc" cols="30" rows="5"
+						<input type="text" class="form-control" name="userName"
+							required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Mật khẩu<span
+						class="required">*</span></label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" name="password"
+							required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Tuổi<span
+						class="required">*</span></label>
+					<div class="col-sm-8">
+						<input type="number" class="form-control" name="age"
+							required />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Giới tính<span
+						class="required">*</span></label>
+					<div class="col-sm-8">
+						<select class="form-control" name="gender">
+							<option value="1">Nam</option>
+							<option value="2">Nữ</option>
+							<option value="3">Khác</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Địa chỉ</label>
+					<div class="col-sm-8">
+						<textarea name="address" id="Product_Desc" cols="30" rows="5"
 							class="form-control"></textarea>
 					</div>
 				</div>

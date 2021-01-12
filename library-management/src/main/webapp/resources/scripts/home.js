@@ -1,6 +1,13 @@
 /**
  * 
  */
+
+/**
+ * 
+ */
+/**
+ * 
+ */
 var AreaConfig = function() {
 	let public = $();
 	let private = $();
@@ -16,46 +23,7 @@ var AreaConfig = function() {
 
 		$('.data-form').ajaxForm({
 			beforeSubmit: function(formData, jqForm, options) {
-				for (var i = 0; i < formData.length; i++) {
-					var dataInput = formData[i];
-					if (dataInput.required) {
-						if (!dataInput.value || formData.length < 7) {
-							DBBB.alert("Vui lòng nhập đầy đủ thông tin");
-							return false;
-						}
-						if (dataInput.name == "Area_Alias" && dataInput.value.length !== 4) {
-							DBBB.alert("Tên viết tắt của khu vực dự báo không hợp lệ!");
-							return false;
-						}
-						if (dataInput.name == "Email" && !DBBB.isEmail(dataInput.value)) {
-							DBBB.alert("Vui lòng nhập đúng định dạng email!");
-							return false;
-						}
-						if (dataInput.name == "Email_Pass" && !DBBB.isValidPassword(dataInput.value)) {
-							DBBB.alert("Vui lòng nhập mật khẩu phải có chữ và số, bao gồm ít nhất 6 kí tự!");
-							return false;
-						}
-					}
-				}
-			},
-			success: function(responseText, statusText, xhr, $form) {
-				var statusCode = responseText.code;
-				if (statusCode == ResponseCodes.OK) {
-					$('#table').DataTable().ajax.reload();
-					$($form[0]).clearForm();
-					$('.modal').modal('hide');
-					DBBB.alert("Thông tin về khu vực dự báo mới đã được lưu vào trong CSDL khu vực dự báo");
-				} else {
-					if (responseText.errorMsg != null)
-						DBBB.alert(responseText.errorMsg);
-					else
-						App.handlerResponseError(statusCode);
-				}
-			}
-		});
-
-		$('#form-import').ajaxForm({
-			beforeSubmit: function(formData, jqForm, options) {
+				const dataSend = {};
 				for (var i = 0; i < formData.length; i++) {
 					var dataInput = formData[i];
 					if (dataInput.required) {
@@ -63,57 +31,89 @@ var AreaConfig = function() {
 							DBBB.alert("Vui lòng nhập đầy đủ thông tin");
 							return false;
 						}
+						if (dataInput.name == "Email_Pass" && !DBBB.isValidPassword(dataInput.value)) {
+							DBBB.alert("Vui lòng nhập mật khẩu phải có chữ và số, bao gồm ít nhất 6 kí tự!");
+							return false;
+						}
 					}
+					dataSend[dataInput.name] = dataInput.value;
 				}
+				$.ajax({
+					type: "POST",
+					url: "/library-management/user/create",
+					data: JSON.stringify(dataSend),
+					contentType: 'application/json',
+				}).then((res) => {
+					if (res.data) {
+						$('#table').DataTable().ajax.reload();
+						jqForm.clearForm();
+						$('.modal').modal('hide');
+						DBBB.alert("Tài khoản người mượn sách đã được lưu");
+					} else {
+						if (res.message)
+							DBBB.alert(res.message);
+						else
+							DBBB.alert("Lỗi hệ thống vui lòng thử lại sau");
+					}
+				})
+				return false;
 			},
 			success: function(responseText, statusText, xhr, $form) {
-				if (responseText.success) {
-					$('#table').DataTable().ajax.reload();
-					$($form[0]).clearForm();
-					$('.modal').modal('hide');
-				}
-				DBBB.alert(responseText.message);
+
 			}
 		});
+
+
 		private.initLoading();
 	}
 	private.loadTable = function() {
 		dataTable = table.dataTable({
 			"processing": true,
-			"serverSide": true,
+			"serverSide": false,
 			"filter": false,
 			"datatype": "json",
 			"ajax": {
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				dataType: 'json',
-				url: "/library-management/author/list",
+				url: "/library-management/user/list",
 				data: function(d) {
-				console.log(d);
+					console.log(d);
 					return JSON.stringify(d);
 				},
 			},
-			// Internationalisation. For more info refer to http://datatables.net/manual/i18n
+
 			"language": {
 				url: '/static/translate/vi.json'
 			},
-
-			"bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+			"bStateSave": true,
 
 			"lengthMenu": [
-				[5, 15, 20, -1],
-				[5, 15, 20, "Tất cả"] // change per page values here
+				[5, 10, 15, 20, -1],
+				[5, 10, 15, 20, "Tất cả"]
 			],
 			// set the initial value
 			"pageLength": 5,
 			"pagingType": "bootstrap_full_number",
 
 			columns: [{
-				title: 'TT',
-				data: 'TT'
+				title: 'Tên đăng nhập',
+				data: "userName"
 			}, {
-				title: 'Tên bản tin',
-				data: "Bulletin_Name"
+				title: 'Tên hiển thị',
+				data: "displayName"
+			}, {
+				title: 'Tuổi',
+				data: "age"
+			}, {
+				title: 'Địa chỉ',
+				data: "address"
+			}, {
+				title: 'Giới tính',
+				data: "gender",
+				render: function(data, type, row, meta) {
+					return data === 1 ? "Nam" : data === 2 ? "Nữ" : "Khác";
+				}
 			}, {
 				title: 'Thao tác',
 				render: function(data, type, row, meta) {
@@ -129,13 +129,6 @@ var AreaConfig = function() {
 				width: '180px',
 				className: 'text-center'
 			}],
-			columnDefs: [
-				{
-					orderable: false,
-					targets: [5]
-				}
-			],
-
 			"initComplete": function(settings, json) {
 				$(".dataTables_filter input")
 					.unbind()
@@ -161,27 +154,29 @@ var AreaConfig = function() {
 		selectedRow = $(this).parents('tr')[0];
 		data = dataTable.fnGetData(selectedRow);
 		App.populateFormWithData('#form-update', data);
+		$('#form-update').find('[name=gender]').find(`option[value=${data.gender}]`).attr('selected','selected');
 		$('.icon').unbind('click').on('click', private.showHidePassInput);
 	};
 	private.deleteItem = function() {
 		selectedRow = $(this).parents('tr')[0];
 		data = dataTable.fnGetData(selectedRow);
-		DBBB.confirm("Bạn có chắc chắn muốn xóa khu vực dự báo này ra khỏi CSDL khu vực dự báo hay không ?", function(result) {
+		DBBB.confirm("Bạn có chắc chắn muốn xóa người mượn sách này ?", function(result) {
 			if (result) {
 				$.ajax({
-					url: "/Area/Config/Delete",
-					data: { id: data.Area_Id },
-					type: 'post'
-				}).done(function(response) {
-					var statusCode = response.code;
-					if (statusCode == ResponseCodes.OK) {
+					url: "/library-management/user/delete",
+					data: JSON.stringify({ id: data.id }),
+					type: 'post',
+					contentType: "application/json; charset=utf-8",
+					dataType: 'json',
+				}).done(function(res) {
+					if (res.data) {
 						$('#table').DataTable().ajax.reload();
-						DBBB.alert("Việc xóa thông tin về khu vực dự báo đã thành công, đề nghị bạn kiểm tra lại");
+						DBBB.alert("Xóa người mượn sách thành công");
 					} else {
-						if (response.errorMsg != null)
-							DBBB.alert(response.errorMsg);
+						if (res.message)
+							DBBB.alert(res.message);
 						else
-							App.handlerResponseError(statusCode);
+							DBBB.alert("Lỗi hệ thống vui lòng thử lại sau");
 					}
 				});
 			}

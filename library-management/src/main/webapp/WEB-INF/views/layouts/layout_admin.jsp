@@ -84,6 +84,8 @@
 	src="<c:url value='/resources/assets/global/plugins/bootbox/bootbox.min.js' />"></script>
 <script
 	src="<c:url value='/resources/assets/layouts/layout2/scripts/layout.js' />"></script>
+<script
+	src="<c:url value='/resources/assets/apps/scripts/account/auth.js' />"></script>
 </head>
 
 <body
@@ -99,24 +101,13 @@
 		<!-- BEGIN NAV -->
 		<nav class="navbar navbar-default fixed-top" style="margin: 0;">
 			<div class="container-fluid">
-				<ul class="nav navbar-nav">
-					<li data-link="system"><a href="/System">Quản trị</a></li>
-					<li data-link="monitor"><a href="/Monitor">Giám sát</a></li>
-					<li data-link="productforecast"><a href="/ProductForeCast">Sản
-							phẩm dự báo</a></li>
-					<li data-link="pointforecast"><a href="/PointForeCast">Dự
-							báo điểm</a></li>
-					<li data-link="evaluatepointforecast"><a
-						href="/EvaluatePointForeCast">Đánh giá dự báo điểm</a></li>
-					<li><a href="/Help/index.html" target="_blank">Trợ giúp</a></li>
-				</ul>
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"> Xin chào, <span class="caret"></span>
+						aria-expanded="false"> Xin chào <b id="user_name"></b> <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" style="z-index: 2000">
-							<li><a href="/Account/Logout">Đăng xuất</a></li>
+							<li><a id="sign_out">Đăng xuất</a></li>
 						</ul></li>
 				</ul>
 			</div>

@@ -6,15 +6,14 @@
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
 			<a href="/"> <img
-				src="./assets/layouts/layout2/img/logo-default.png" alt="logo"
+				src="./resources/assets/layouts/layout2/img/logo-default.png" alt="logo"
 				class="logo-default" />
 			</a>
 		</div>
 		<!-- END LOGO -->
 		<!-- BEGIN PAGE TOP -->
 		<div class="page-top">
-			<p class="main">HỆ THỐNG HỖ TRỢ DỰ BÁO THỜI TIẾT ĐIỂM CHO KHU VỰC
-				ĐỒNG BẰNG BẮC BỘ</p>
+			<p class="main">APTECH LIBRARY MANAGEMENT SYSTEM</p>
 
 		</div>
 		<!-- END PAGE TOP -->

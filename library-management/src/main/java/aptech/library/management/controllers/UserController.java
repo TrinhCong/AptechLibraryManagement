@@ -25,6 +25,15 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
+	@GetMapping("")
+	public String index() {
+		return "user";
+	}
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
 	@PostMapping("/list")
 	@ResponseBody
 	public BaseResult listUsers() {
@@ -46,7 +55,7 @@ public class UserController {
 			return new ErrorResult("Error system");
 		}
 	}
-	
+
 	@PostMapping("/delete")
 	@ResponseBody
 	public BaseResult deleteUser(@RequestBody User user) {
@@ -58,5 +67,3 @@ public class UserController {
 		}
 	}
 }
-
-

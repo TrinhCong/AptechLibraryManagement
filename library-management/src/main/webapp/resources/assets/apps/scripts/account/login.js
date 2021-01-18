@@ -12,7 +12,7 @@ class LoginHandler {
             App.stopPageLoading();
             if (data.userName == 'admin' && data.password == '123456') {
                 localStorage.setItem('username', 'Admin');
-                $(location).attr('href', '/library-management/user');
+                $(location).attr('href', '/library-management/home');
             } else {
                 localStorage.removeItem('username');
                 bootbox.alert("Wrong user or password!");

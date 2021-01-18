@@ -4,7 +4,7 @@ class AuthHandler {
         let userName = localStorage.getItem('username');
         if (status) {
             if (userName)
-                $(location).attr('href', '/library-management/user');
+                $(location).attr('href', '/library-management/home');
         } else {
             if (!userName)
                 $(location).attr('href', '/library-management/user/login');

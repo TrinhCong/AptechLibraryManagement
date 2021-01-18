@@ -1,9 +1,7 @@
-﻿
-
-/**
+﻿/**
 Core script to handle the entire theme and core functions
 **/
-var Layout = function () {
+var Layout = function() {
 
     var layoutImgPath = 'layouts/layout2/img/';
 
@@ -18,7 +16,7 @@ var Layout = function () {
     // this function handles responsive layout on screen size resize or mobile device rotate.
 
     // Set proper height for sidebar and content. The content and sidebar height must be synced always.
-    var handleSidebarAndContentHeight = function () {
+    var handleSidebarAndContentHeight = function() {
         var content = $('.page-content');
         var contentBody = $('.page-content .page-content-body');
         var sidebar = $('.page-sidebar');
@@ -58,14 +56,14 @@ var Layout = function () {
     };
 
     // Handle sidebar menu links
-    var handleSidebarMenuActiveLink = function (mode, el, $state) {
+    var handleSidebarMenuActiveLink = function(mode, el, $state) {
         var url = location.hash.toLowerCase();
         var menu = $('.page-sidebar-menu');
 
         if (mode === 'click' || mode === 'set') {
             el = $(el);
         } else if (mode === 'match') {
-            menu.find('li > a').each(function () {
+            menu.find('li > a').each(function() {
                 var state = $(this).attr('ui-sref');
                 if ($state && state) {
                     if ($state.is(state)) {
@@ -103,9 +101,9 @@ var Layout = function () {
 
         // begin: handle active state
         if (menu.hasClass('page-sidebar-menu-hover-submenu') === false) {
-            menu.find('li.nav-item.open').each(function () {
+            menu.find('li.nav-item.open').each(function() {
                 var match = false;
-                $(this).find('li').each(function () {
+                $(this).find('li').each(function() {
                     var state = $(this).attr('ui-sref');
                     if ($state && state) {
                         if ($state.is(state)) {
@@ -134,7 +132,7 @@ var Layout = function () {
         menu.find('li > a > .selected').remove();
         // end: handle active state
 
-        el.parents('li').each(function () {
+        el.parents('li').each(function() {
             $(this).addClass('active');
             $(this).find('> a > span.arrow').addClass('open');
 
@@ -155,9 +153,9 @@ var Layout = function () {
     };
 
     // Handle sidebar menu
-    var handleSidebarMenu = function () {
+    var handleSidebarMenu = function() {
         // handle sidebar link click
-        $('.page-sidebar-menu').on('click', 'li > a.nav-toggle, li > a > span.nav-toggle', function (e) {
+        $('.page-sidebar-menu').on('click', 'li > a.nav-toggle, li > a > span.nav-toggle', function(e) {
             var that = $(this).closest('.nav-item').children('.nav-link');
 
             if (App.getViewPort().width >= resBreakpointMd && !$('.page-sidebar-menu').attr("data-initialized") && $('body').hasClass('page-sidebar-closed') && that.parent('li').parent('.page-sidebar-menu').size() === 1) {
@@ -197,7 +195,7 @@ var Layout = function () {
             if (sub.is(":visible")) {
                 $('.arrow', the).removeClass("open");
                 the.parent().removeClass("open");
-                sub.slideUp(slideSpeed, function () {
+                sub.slideUp(slideSpeed, function() {
                     if (autoScroll === true && $('body').hasClass('page-sidebar-closed') === false) {
                         if ($('body').hasClass('page-sidebar-fixed')) {
                             menu.slimScroll({
@@ -212,7 +210,7 @@ var Layout = function () {
             } else if (hasSubMenu) {
                 $('.arrow', the).addClass("open");
                 the.parent().addClass("open");
-                sub.slideDown(slideSpeed, function () {
+                sub.slideDown(slideSpeed, function() {
                     if (autoScroll === true && $('body').hasClass('page-sidebar-closed') === false) {
                         if ($('body').hasClass('page-sidebar-fixed')) {
                             menu.slimScroll({
@@ -231,7 +229,7 @@ var Layout = function () {
 
         // handle menu close for angularjs version
         if (App.isAngularJsApp()) {
-            $(".page-sidebar-menu li > a").on("click", function (e) {
+            $(".page-sidebar-menu li > a").on("click", function(e) {
                 if (App.getViewPort().width < resBreakpointMd && $(this).next().hasClass('sub-menu') === false) {
                     $('.page-header .responsive-toggler').click();
                 }
@@ -239,7 +237,7 @@ var Layout = function () {
         }
 
         // handle ajax links within sidebar menu
-        $('.page-sidebar').on('click', ' li > a.ajaxify', function (e) {
+        $('.page-sidebar').on('click', ' li > a.ajaxify', function(e) {
             e.preventDefault();
             App.scrollTop();
 
@@ -249,7 +247,7 @@ var Layout = function () {
             menuContainer.children('li.active').removeClass('active');
             menuContainer.children('arrow.open').removeClass('open');
 
-            $(this).parents('li').each(function () {
+            $(this).parents('li').each(function() {
                 $(this).addClass('active');
                 $(this).children('a > span.arrow').addClass('open');
             });
@@ -263,7 +261,7 @@ var Layout = function () {
         });
 
         // handle ajax link within main content
-        $('.page-content').on('click', '.ajaxify', function (e) {
+        $('.page-content').on('click', '.ajaxify', function(e) {
             e.preventDefault();
             App.scrollTop();
 
@@ -279,7 +277,7 @@ var Layout = function () {
         });
 
         // handle scrolling to top on responsive menu toggler click when header is fixed for mobile view
-        $(document).on('click', '.page-header-fixed-mobile .page-header .responsive-toggler', function () {
+        $(document).on('click', '.page-header-fixed-mobile .page-header .responsive-toggler', function() {
             App.scrollTop();
         });
 
@@ -287,13 +285,13 @@ var Layout = function () {
         handleFixedSidebarHoverEffect();
 
         // handle the search bar close
-        $('.page-sidebar').on('click', '.sidebar-search .remove', function (e) {
+        $('.page-sidebar').on('click', '.sidebar-search .remove', function(e) {
             e.preventDefault();
             $('.sidebar-search').removeClass("open");
         });
 
         // handle the search query submit on enter press
-        $('.page-sidebar .sidebar-search').on('keypress', 'input.form-control', function (e) {
+        $('.page-sidebar .sidebar-search').on('keypress', 'input.form-control', function(e) {
             if (e.which == 13) {
                 $('.sidebar-search').submit();
                 return false; //<---- Add this line
@@ -301,7 +299,7 @@ var Layout = function () {
         });
 
         // handle the search submit(for sidebar search and responsive mode of the header search)
-        $('.sidebar-search .submit').on('click', function (e) {
+        $('.sidebar-search .submit').on('click', function(e) {
             e.preventDefault();
             if ($('body').hasClass("page-sidebar-closed")) {
                 if ($('.sidebar-search').hasClass('open') === false) {
@@ -319,11 +317,11 @@ var Layout = function () {
 
         // handle close on body click
         if ($('.sidebar-search').size() !== 0) {
-            $('.sidebar-search .input-group').on('click', function (e) {
+            $('.sidebar-search .input-group').on('click', function(e) {
                 e.stopPropagation();
             });
 
-            $('body').on('click', function () {
+            $('body').on('click', function() {
                 if ($('.sidebar-search').hasClass('open')) {
                     $('.sidebar-search').removeClass("open");
                 }
@@ -331,30 +329,30 @@ var Layout = function () {
         }
     };
 
-    var handleNavMenu = function () {
+    var handleNavMenu = function() {
         var url = window.location.pathname.split('/')[1].toLowerCase();
         $('ul.nav li.active').removeClass('active');
-        $('ul.nav li[data-link=' + url +']').addClass('active');
-        $('ul.nav a').filter(function () {
+        $('ul.nav li[data-link=' + url + ']').addClass('active');
+        $('ul.nav a').filter(function() {
             return this.href === url;
         }).parent().addClass('active');
     };
 
     // Handles the horizontal menu
-    var handleHeader = function () {
+    var handleHeader = function() {
         // handle search box expand/collapse        
-        $('.page-header').on('click', '.search-form', function (e) {
+        $('.page-header').on('click', '.search-form', function(e) {
             $(this).addClass("open");
             $(this).find('.form-control').focus();
 
-            $('.page-header .search-form .form-control').on('blur', function (e) {
+            $('.page-header .search-form .form-control').on('blur', function(e) {
                 $(this).closest('.search-form').removeClass("open");
                 $(this).unbind("blur");
             });
         });
 
         // handle hor menu search form on enter press
-        $('.page-header').on('keypress', '.hor-menu .search-form .form-control', function (e) {
+        $('.page-header').on('keypress', '.hor-menu .search-form .form-control', function(e) {
             if (e.which == 13) {
                 $(this).closest('.search-form').submit();
                 return false;
@@ -362,7 +360,7 @@ var Layout = function () {
         });
 
         // handle header search button click
-        $('.page-header').on('mousedown', '.search-form.open .submit', function (e) {
+        $('.page-header').on('mousedown', '.search-form.open .submit', function(e) {
             e.preventDefault();
             e.stopPropagation();
             $(this).closest('.search-form').submit();
@@ -370,7 +368,7 @@ var Layout = function () {
     };
 
     // Helper function to calculate sidebar height for fixed sidebar layout.
-    var _calculateFixedSidebarViewportHeight = function () {
+    var _calculateFixedSidebarViewportHeight = function() {
         var sidebarHeight = App.getViewPort().height - $('.page-header').outerHeight();
         if ($('body').hasClass("page-footer-fixed")) {
             sidebarHeight = sidebarHeight - $('.page-footer').outerHeight();
@@ -380,7 +378,7 @@ var Layout = function () {
     };
 
     // Handles fixed sidebar
-    var handleFixedSidebar = function () {
+    var handleFixedSidebar = function() {
         var menu = $('.page-sidebar-menu');
 
         App.destroySlimScroll(menu);
@@ -398,14 +396,14 @@ var Layout = function () {
     };
 
     // Handles sidebar toggler to close/hide the sidebar.
-    var handleFixedSidebarHoverEffect = function () {
+    var handleFixedSidebarHoverEffect = function() {
         var body = $('body');
         if (body.hasClass('page-sidebar-fixed')) {
-            $('.page-sidebar').on('mouseenter', function () {
+            $('.page-sidebar').on('mouseenter', function() {
                 if (body.hasClass('page-sidebar-closed')) {
                     $(this).find('.page-sidebar-menu').removeClass('page-sidebar-menu-closed');
                 }
-            }).on('mouseleave', function () {
+            }).on('mouseleave', function() {
                 if (body.hasClass('page-sidebar-closed')) {
                     $(this).find('.page-sidebar-menu').addClass('page-sidebar-menu-closed');
                 }
@@ -414,7 +412,7 @@ var Layout = function () {
     };
 
     // Hanles sidebar toggler
-    var handleSidebarToggler = function () {
+    var handleSidebarToggler = function() {
         var body = $('body');
 
         /**
@@ -425,7 +423,7 @@ var Layout = function () {
         */
 
         // handle sidebar show/hide
-        $('body').on('click', '.sidebar-toggler', function (e) {
+        $('body').on('click', '.sidebar-toggler', function(e) {
             var sidebar = $('.page-sidebar');
             var sidebarMenu = $('.page-sidebar-menu');
             $(".sidebar-search", sidebar).removeClass("open");
@@ -452,20 +450,20 @@ var Layout = function () {
     };
 
     // Handles Bootstrap Tabs.
-    var handleTabs = function () {
+    var handleTabs = function() {
         // fix content height on tab click
-        $('body').on('shown.bs.tab', 'a[data-toggle="tab"]', function () {
+        $('body').on('shown.bs.tab', 'a[data-toggle="tab"]', function() {
             handleSidebarAndContentHeight();
         });
     };
 
     // Handles the go to top button at the footer
-    var handleGoTop = function () {
+    var handleGoTop = function() {
         var offset = 300;
         var duration = 500;
 
         if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) { // ios supported
-            $(window).bind("touchend touchcancel touchleave", function (e) {
+            $(window).bind("touchend touchcancel touchleave", function(e) {
                 if ($(this).scrollTop() > offset) {
                     $('.scroll-to-top').fadeIn(duration);
                 } else {
@@ -473,7 +471,7 @@ var Layout = function () {
                 }
             });
         } else { // general 
-            $(window).scroll(function () {
+            $(window).scroll(function() {
                 if ($(this).scrollTop() > offset) {
                     $('.scroll-to-top').fadeIn(duration);
                 } else {
@@ -482,7 +480,7 @@ var Layout = function () {
             });
         }
 
-        $('.scroll-to-top').click(function (e) {
+        $('.scroll-to-top').click(function(e) {
             e.preventDefault();
             $('html, body').animate({
                 scrollTop: 0
@@ -492,9 +490,9 @@ var Layout = function () {
     };
 
     // Hanlde 100% height elements(block, portlet, etc)
-    var handle100HeightContent = function () {
+    var handle100HeightContent = function() {
 
-        $('.full-height-content').each(function () {
+        $('.full-height-content').each(function() {
             var target = $(this);
             var height;
 
@@ -540,20 +538,20 @@ var Layout = function () {
         // Main init methods to initialize the layout
         //IMPORTANT!!!: Do not modify the core handlers call order.
 
-        initHeader: function () {
+        initHeader: function() {
             handleHeader();
             handleNavMenu();
         },
 
-        setSidebarMenuActiveLink: function (mode, el) {
+        setSidebarMenuActiveLink: function(mode, el) {
             handleSidebarMenuActiveLink(mode, el);
         },
 
-        setAngularJsSidebarMenuActiveLink: function (mode, el, $state) {
+        setAngularJsSidebarMenuActiveLink: function(mode, el, $state) {
             handleSidebarMenuActiveLink(mode, el, $state);
         },
 
-        initSidebar: function ($state) {
+        initSidebar: function($state) {
             //layout handlers
             handleFixedSidebar(); // handles fixed sidebar menu
             handleSidebarMenu(); // handles main menu
@@ -566,7 +564,7 @@ var Layout = function () {
             App.addResizeHandler(handleFixedSidebar); // reinitialize fixed sidebar on window resize
         },
 
-        initContent: function () {
+        initContent: function() {
             handle100HeightContent(); // handles 100% height elements(block, portlet, etc)
             handleTabs(); // handle bootstrah tabs
 
@@ -574,18 +572,18 @@ var Layout = function () {
             App.addResizeHandler(handle100HeightContent); // reinitialize content height on window resize 
         },
 
-        initFooter: function () {
+        initFooter: function() {
             handleGoTop(); //handles scroll to top functionality in the footer
         },
 
-        init: function () {
+        init: function() {
             this.initHeader();
             this.initSidebar();
             this.initContent();
             this.initFooter();
         },
 
-        loadAjaxContent: function (url, sidebarMenuLink) {
+        loadAjaxContent: function(url, sidebarMenuLink) {
             var pageContent = $('.page-content .page-content-body');
 
             App.startPageLoading();
@@ -595,7 +593,7 @@ var Layout = function () {
                 cache: false,
                 url: url,
                 dataType: "html",
-                success: function (res) {
+                success: function(res) {
                     App.stopPageLoading();
                     pageContent.html(res);
 
@@ -610,7 +608,7 @@ var Layout = function () {
                     Layout.fixContentHeight(); // fix content height
                     App.initAjax(); // initialize core stuff
                 },
-                error: function (res, ajaxOptions, thrownError) {
+                error: function(res, ajaxOptions, thrownError) {
                     App.stopPageLoading();
                     pageContent.html('<h4>Không thể tải trang yêu cầu! Vui lòng kiểm tra lại kết nối mạng của bạn!</h4>');
 
@@ -621,32 +619,32 @@ var Layout = function () {
             });
         },
 
-        addAjaxContentSuccessCallback: function (callback) {
+        addAjaxContentSuccessCallback: function(callback) {
             ajaxContentSuccessCallbacks.push(callback);
         },
 
-        addAjaxContentErrorCallback: function (callback) {
+        addAjaxContentErrorCallback: function(callback) {
             ajaxContentErrorCallbacks.push(callback);
         },
 
         //public function to fix the sidebar and content height accordingly
-        fixContentHeight: function () {
+        fixContentHeight: function() {
             handleSidebarAndContentHeight();
         },
 
-        initFixedSidebarHoverEffect: function () {
+        initFixedSidebarHoverEffect: function() {
             handleFixedSidebarHoverEffect();
         },
 
-        initFixedSidebar: function () {
+        initFixedSidebar: function() {
             handleFixedSidebar();
         },
 
-        getLayoutImgPath: function () {
+        getLayoutImgPath: function() {
             return App.getAssetsPath() + layoutImgPath;
         },
 
-        getLayoutCssPath: function () {
+        getLayoutCssPath: function() {
             return App.getAssetsPath() + layoutCssPath;
         }
     };
@@ -654,7 +652,7 @@ var Layout = function () {
 }();
 
 if (App.isAngularJsApp() === false) {
-    jQuery(document).ready(function () {
+    jQuery(document).ready(function() {
         Layout.init(); // init metronic core componets
         //$(document).ajaxStart(function () {
         //    App.startPageLoading();
@@ -666,7 +664,7 @@ if (App.isAngularJsApp() === false) {
 
 }
 
-var DBBB = function () {
+var Aptech = function() {
     return {
         alert(message, callback) {
             let options = {
@@ -699,11 +697,11 @@ var DBBB = function () {
                         className: 'btn-default'
                     }
                 },
-                callback: typeof callback === 'function' ? callback : () => { }
+                callback: typeof callback === 'function' ? callback : () => {}
             });
         },
         error() {
-            DBBB.alert("Hệ thống đang bận! Vui lòng làm mới trình duyệt và thử lại!");
+            Aptech.alert("Hệ thống đang bận! Vui lòng làm mới trình duyệt và thử lại!");
             App.stopPageLoading();
         },
         isValidEmails(email) {
@@ -725,7 +723,7 @@ var DBBB = function () {
         },
         isValidPath(path) {
             //var re = /^([a-zA-Z]:)?(\\[^<>:"\/\\|?*]+)*\\?$/;
-            var re =/^([\\\/][^<>:"\/\\|?*]+)*[\\\/]?$/;
+            var re = /^([\\\/][^<>:"\/\\|?*]+)*[\\\/]?$/;
             return re.test(String(path));
         }
     };

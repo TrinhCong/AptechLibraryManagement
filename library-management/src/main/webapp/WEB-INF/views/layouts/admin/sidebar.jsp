@@ -6,7 +6,7 @@
         <!-- BEGIN SIDEBAR MENU -->
         <ul class="page-sidebar-menu page-header-fixed page-sidebar-menu-compact" data-keep-expanded="false"
             data-auto-scroll="true" data-slide-speed="200">
-            <li class="nav-item start"><a href="/library-management/user" class="nav-link"> <i
+            <li class="nav-item start"><a href="/library-management/user" class="nav-link ajaxify"> <i
                         class="fa fa-th-list"></i> <span class="title">Users</span>
                 </a></li>
 

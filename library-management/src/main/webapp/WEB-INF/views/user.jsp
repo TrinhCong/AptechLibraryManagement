@@ -107,7 +107,7 @@
 				<div class="form-group">
 					<label for="" class="control-label col-sm-4">Address</label>
 					<div class="col-sm-8">
-						<textarea name="address" id="Product_Desc" cols="30" rows="5"
+						<textarea name="address" cols="30" rows="5"
 							class="form-control"></textarea>
 					</div>
 				</div>
@@ -177,7 +177,7 @@
 				<div class="form-group">
 					<label for="" class="control-label col-sm-4">Address</label>
 					<div class="col-sm-8">
-						<textarea name="address" id="Product_Desc" cols="30" rows="5"
+						<textarea name="address" cols="30" rows="5"
 							class="form-control"></textarea>
 					</div>
 				</div>
@@ -186,7 +186,7 @@
 		<div class="modal-footer text-center"
 			style="text-align: center !important">
 			<button type="button" onclick="$('#form-create').submit()"
-				class="btn btn-sm green">Lưu lại</button>
+				class="btn btn-sm green">Save</button>
 			<button type="button" data-dismiss="modal" class="btn btn-sm red">Close</button>
 		</div>
 	</div>
@@ -201,7 +201,7 @@
 		src="<c:url value='/resources/assets/global/plugins/jquery.form.min.js' />"></script>
 	<script
 		src="<c:url value='/resources/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js' />"></script>
-	<script src="<c:url value='/resources/scripts/home.js' />"></script>
+	<script src="<c:url value='/resources/assets/apps/scripts/user.js' />"></script>
 
 </body>
 

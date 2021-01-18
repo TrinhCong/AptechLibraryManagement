@@ -30,6 +30,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="D:/Aptech/AptechLibraryManagement/mysql-connector-java-8.0.22.jar"/>
+	<classpathentry kind="lib" path="D:/demo/New folder (2)/AptechLibraryManagement/mysql-connector-java-8.0.22.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

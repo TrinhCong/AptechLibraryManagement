@@ -8,12 +8,13 @@
 			class="page-sidebar-menu page-header-fixed page-sidebar-menu-compact"
 			data-keep-expanded="false" data-auto-scroll="true"
 			data-slide-speed="200">
-			<li class="nav-item start"><a href="/library-management/user/"
+			<li class="nav-item start"><a href="/library-management/spring/admin"
 				class="nav-link"> <i class="fa fa-th-list"></i> <span
-					class="title">Người mượn</span>
+					class="title">Admin</span>
 			</a></li>
-			<!-- <li class="nav-item"><a href="/library-management/spring/"
-				class="nav-link"> <i class="fa fa-cog"></i> <span class="title">Home</span>
+			<li class="nav-item"><a href="/library-management/spring/"
+				class="nav-link"> <i class="fa fa-cog"></i> <span
+					class="title">Home</span>
 			</a></li>
 			<li class="nav-item"><a href="#" class="nav-link nav-toggle">
 					<i class="fa fa-file-text-o"></i> <span class="title">Lập
@@ -30,7 +31,7 @@
 						class="nav-link ajaxify"> <i class="fa fa-file-o"></i> <span
 							class="title">Đánh giá dự báo</span>
 					</a></li>
-				</ul></li> -->
+				</ul></li>
 		</ul>
 		<!-- END SIDEBAR MENU -->
 	</div>

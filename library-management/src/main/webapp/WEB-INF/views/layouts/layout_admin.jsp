@@ -99,7 +99,7 @@
 		<!-- BEGIN NAV -->
 		<nav class="navbar navbar-default fixed-top" style="margin: 0;">
 			<div class="container-fluid">
-				<!-- <ul class="nav navbar-nav">
+				<ul class="nav navbar-nav">
 					<li data-link="system"><a href="/System">Quản trị</a></li>
 					<li data-link="monitor"><a href="/Monitor">Giám sát</a></li>
 					<li data-link="productforecast"><a href="/ProductForeCast">Sản
@@ -109,7 +109,7 @@
 					<li data-link="evaluatepointforecast"><a
 						href="/EvaluatePointForeCast">Đánh giá dự báo điểm</a></li>
 					<li><a href="/Help/index.html" target="_blank">Trợ giúp</a></li>
-				</ul> -->
+				</ul>
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"

@@ -21,7 +21,11 @@ import aptech.library.management.viewmodels.SuccessResult;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
+	@RequestMapping("/")
+	public String Index(Model model) {
+		return "user";
+	}
+	
 	@Autowired
 	private UserRepository userRepository;
 

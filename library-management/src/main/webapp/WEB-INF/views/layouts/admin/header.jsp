@@ -13,8 +13,7 @@
 		<!-- END LOGO -->
 		<!-- BEGIN PAGE TOP -->
 		<div class="page-top">
-			<p class="main">HỆ THỐNG HỖ TRỢ DỰ BÁO THỜI TIẾT ĐIỂM CHO KHU VỰC
-				ĐỒNG BẰNG BẮC BỘ</p>
+			<p class="main">Phần Mềm Quản Trị Mượn Sách</p>
 
 		</div>
 		<!-- END PAGE TOP -->

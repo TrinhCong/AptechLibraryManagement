@@ -20691,16 +20691,16 @@ Custom color buttons
   border-right-color: #4DB3A2 !important; }
 
 .bg-green-sharp {
-  background: #2ab4c0 !important; }
+  background: #00796B !important; }
 
 .bg-green-sharp-opacity {
   background: rgba(42, 180, 192, 0.8) !important; }
 
 .bg-hover-green-sharp:hover {
-  background: #2ab4c0 !important; }
+  background: #00796B !important; }
 
 .font-green-sharp {
-  color: #2ab4c0 !important; }
+  color: #00796B !important; }
 
 .bg-font-green-sharp {
   color: #FFFFFF !important; }

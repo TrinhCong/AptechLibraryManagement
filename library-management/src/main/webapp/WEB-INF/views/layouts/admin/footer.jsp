@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="page-footer">
 	<div class="page-footer-inner">
-		&copy; Đài KTTV khu vực đồng bằng Bắc Bộ, Tổng cục KTTV <br /> Thông
-		tin liên hệ: Điện thoại: - Fax: - Email:
+		&copy; 2018 - Aptech Students Group
 		<div class="scroll-to-top">
 			<i class="icon-arrow-up"></i>
 		</div>

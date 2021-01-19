@@ -32,15 +32,15 @@ class UserHandler {
                 }
                 $.ajax({
                     type: "POST",
-                    url: "/library-management/user/create",
+                    url: "/library-management/user/save",
                     data: JSON.stringify(dataSend),
                     contentType: 'application/json',
                 }).then((res) => {
-                    if (res.data) {
+                    if (res.success) {
                         that.$table.DataTable().ajax.reload();
                         jqForm.clearForm();
                         $('.modal').modal('hide');
-                        Aptech.alert("Created successful!");
+                        Aptech.alert("Update infomation successful!");
                     } else {
                         if (res.message)
                             Aptech.alert(res.message);

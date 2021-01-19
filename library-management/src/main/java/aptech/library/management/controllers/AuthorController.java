@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import aptech.library.management.models.Author;
-import aptech.library.management.repositories.AuthorRepository;
 import aptech.library.management.repositories.AuthorRepository;
 import aptech.library.management.viewmodels.BaseResult;
 import aptech.library.management.viewmodels.ErrorResult;
@@ -26,40 +24,48 @@ public class AuthorController {
 	private AuthorRepository authorRepository;
 
 	@GetMapping("")
-	public String index() {
+	public String Index() {
 		return "author";
 	}
 
 	@PostMapping("/list")
 	@ResponseBody
-	public BaseResult listAuthors() {
+	public BaseResult List() {
 		try {
 			List<Author> theAuthor = authorRepository.getAuthors();
 			return new SuccessResult(theAuthor);
 		} catch (Exception ex) {
-			return new ErrorResult("Error system");
+			return new ErrorResult("An error has occured! Please try later!");
 		}
 	}
 
-	@PostMapping("/create")
+	@PostMapping("/save")
 	@ResponseBody
-	public BaseResult createAuthor(@RequestBody Author author) {
+	public BaseResult SaveAuthor(@RequestBody Author author) {
 		try {
+			if(authorRepository.isExist(author))
+			return new ErrorResult("Author Name already exist!");
 			authorRepository.saveAuthor(author);
-			return new SuccessResult(author);
+			if(author.getId()>0)
+			return new SuccessResult();
+			else
+			return new ErrorResult();
 		} catch (Exception ex) {
-			return new ErrorResult("Error system");
+			return new ErrorResult("An error has occured! Please try later!");
 		}
 	}
 
 	@PostMapping("/delete")
 	@ResponseBody
-	public BaseResult deleteAuthor(@RequestBody Author author) {
+	public BaseResult DeleteAuthor(@RequestBody Author author) {
 		try {
-			boolean authorDeleted = authorRepository.deleteAuthor(author.getId());
-			return new SuccessResult(authorDeleted);
+			boolean deleted = authorRepository.deleteAuthor(author.getId());
+			if(deleted)
+			return new SuccessResult();
+			else
+			return new ErrorResult();
 		} catch (Exception ex) {
-			return new ErrorResult("Error system");
+			return new ErrorResult("An error has occured! Please try later!");
 		}
 	}
 }

@@ -5,7 +5,7 @@
 	<div class="page-header-inner ">
 		<!-- BEGIN LOGO -->
 		<div class="page-logo">
-			<a href="/"> <img
+			<a href="/library-management"> <img
 				src="./resources/assets/layouts/layout2/img/logo-default.png" alt="logo"
 				class="logo-default" />
 			</a>

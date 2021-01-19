@@ -23,24 +23,20 @@ class SubjectHandler {
                             Aptech.alert("Please enter all fields!");
                             return false;
                         }
-                        if (dataInput.name == "Email_Pass" && !Aptech.isValidPassword(dataInput.value)) {
-                            Aptech.alert("Please enter the password must be alphanumeric, include at least 6 characters!");
-                            return false;
-                        }
                     }
                     dataSend[dataInput.name] = dataInput.value;
                 }
                 $.ajax({
                     type: "POST",
-                    url: "/library-management/subject/create",
+                    url: "/library-management/subject/save",
                     data: JSON.stringify(dataSend),
                     contentType: 'application/json',
                 }).then((res) => {
-                    if (res.data) {
+                    if (res.success) {
                         that.$table.DataTable().ajax.reload();
                         jqForm.clearForm();
                         $('.modal').modal('hide');
-                        Aptech.alert("Created successful!");
+                        Aptech.alert("Update infomation successful!");
                     } else {
                         if (res.message)
                             Aptech.alert(res.message);
@@ -90,7 +86,7 @@ class SubjectHandler {
 
             columns: [{
                 title: 'Subject name',
-                data: "subjectName"
+                data: "name"
             }, {
                 title: 'Description',
                 data: "description"

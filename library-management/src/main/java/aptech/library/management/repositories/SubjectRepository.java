@@ -43,6 +43,7 @@ public class SubjectRepository implements ISubjectRepository {
 		return session;
 	}
 
+
 	public List<Subject> getSubjects() {
 		Session session = openSession();
 		CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -65,6 +66,15 @@ public class SubjectRepository implements ISubjectRepository {
 		return false;
 	}
 
+	
+	public boolean isExist(Subject theSubject){
+		List<Subject> subjects=getSubjects();
+		for(Subject subject:subjects){
+			if(subject.getId()==theSubject.getId()&&subject.getName().trim().equals(subject.getName().trim()))
+			return true;
+		}
+		return false;
+	}
 	public void saveSubject(Subject theSubject) {
 		Session session = openSession();
 		if (theSubject.getId() == 0) {

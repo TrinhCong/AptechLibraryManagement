@@ -30,18 +30,21 @@
                     <i class="fa fa-file-text-o"></i> <span class="title">Books Management</span> <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="nav-item "><a href="/library-management/author" class="nav-link ajaxify">
+                    <li class="nav-item "><a href="/library-management/borrowing-book" class="nav-link ajaxify">
                             <i class="fa fa-file-o"></i> <span class="title">Borrowing Books</span>
                         </a></li>
-                    <li class="nav-item "><a href="/library-management/subject" class="nav-link ajaxify">
-                            <i class="fa fa-file-o"></i> <span class="title">Dammaged Books</span>
+                    <li class="nav-item "><a href="/library-management/damaged-book" class="nav-link ajaxify">
+                            <i class="fa fa-file-o"></i> <span class="title">Damaged Books</span>
                         </a></li>
-                    <li class="nav-item "><a href="/library-management/book" class="nav-link ajaxify"> <i
+                    <li class="nav-item "><a href="/library-management/lost-book" class="nav-link ajaxify"> <i
                                 class="fa fa-file-o"></i> <span class="title">Lost Books</span>
                         </a>
                     </li>
                 </ul>
             </li>
+            <li class="nav-item start"><a href="/library-management/statistic" class="nav-link ajaxify"> <i
+                        class="fa fa-th-list"></i> <span class="title">Statistics</span>
+                </a></li>
         </ul>
         <!-- END SIDEBAR MENU -->
     </div>

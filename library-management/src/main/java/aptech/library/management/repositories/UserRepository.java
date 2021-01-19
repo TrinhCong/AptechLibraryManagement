@@ -64,6 +64,15 @@ public class UserRepository implements IUserRepository {
 		}
 		return false;
 	}
+	
+	public boolean isExist(User theUser){
+		List<User> users=getUsers();
+		for(User user:users){
+			if(user.getId()==theUser.getId()&&user.getUserName().trim().equals(user.getUserName().trim()))
+			return true;
+		}
+		return false;
+	}
 
 	public void saveUser(User theUser) {
 		Session session = openSession();

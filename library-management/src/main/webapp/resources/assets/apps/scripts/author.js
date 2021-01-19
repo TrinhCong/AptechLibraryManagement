@@ -23,24 +23,21 @@ class AuthorHandler {
                             Aptech.alert("Please enter all fields!");
                             return false;
                         }
-                        if (dataInput.name == "Email_Pass" && !Aptech.isValidPassword(dataInput.value)) {
-                            Aptech.alert("Please enter the password must be alphanumeric, include at least 6 characters!");
-                            return false;
-                        }
                     }
                     dataSend[dataInput.name] = dataInput.value;
                 }
+                console.log(dataSend);
                 $.ajax({
                     type: "POST",
-                    url: "/library-management/author/create",
+                    url: "/library-management/author/save",
                     data: JSON.stringify(dataSend),
                     contentType: 'application/json',
                 }).then((res) => {
-                    if (res.data) {
+                    if (res.success) {
                         that.$table.DataTable().ajax.reload();
                         jqForm.clearForm();
                         $('.modal').modal('hide');
-                        Aptech.alert("Created successful!");
+                        Aptech.alert("Update infomation successful!");
                     } else {
                         if (res.message)
                             Aptech.alert(res.message);
@@ -90,7 +87,7 @@ class AuthorHandler {
 
             columns: [{
                 title: 'Author name',
-                data: "authorName"
+                data: "name"
             }, {
                 title: 'Description',
                 data: "description"

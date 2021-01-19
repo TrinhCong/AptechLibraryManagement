@@ -55,7 +55,7 @@
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
 				aria-hidden="true"></button>
-			<h4 class="modal-title"Update User</h4>
+			<h4 class="modal-title">Update User</h4>
 		</div>
 		<div class="modal-body">
 			<form action="/NWPProduct/Update" method="post"
@@ -116,7 +116,7 @@
 		<div class="modal-footer text-center"
 			style="text-align: center !important">
 			<button type="button" onclick="$('#form-update').submit()"
-				class="btn btn-sm green">Lưu lại</button>
+				class="btn btn-sm green">Save</button>
 			<button type="button" data-dismiss="modal" class="btn btn-sm red">Close</button>
 		</div>
 	</div>
@@ -129,7 +129,7 @@
 			<h4 class="modal-title">Add User</h4>
 		</div>
 		<div class="modal-body">
-			<form action="/library-management/user/create" class="form-horizontal data-form"
+			<form action="/library-management/user/save" class="form-horizontal data-form"
 				method="post" id="form-create">
 				<div class="form-group">
 					<label for="" class="control-label col-sm-4">Full Name<span

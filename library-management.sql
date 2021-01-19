@@ -74,6 +74,7 @@ CREATE TABLE `borrowing_books` (
   `rental` float DEFAULT NULL,
   `returned` tinyint(1) DEFAULT NULL,
   `quantity` int DEFAULT NULL,
+  `note` text,
   PRIMARY KEY (`id`),
   KEY `borrowing_books_FK` (`user_id`),
   KEY `borrowing_books_FK_1` (`book_id`),

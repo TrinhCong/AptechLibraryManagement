@@ -49,33 +49,33 @@
     <div class="content">
         <!-- BEGIN LOGIN FORM -->
         <form class="login-form">
-            <h3 class="form-title">Đăng nhập vào hệ thống</h3>
+            <h3 class="form-title">Log In</h3>
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button>
-                <span> Vui lòng nhập tài khoản và mật khẩu </span>
+                <span> Please enter user name and password </span>
             </div>
             <div class="form-group">
                 <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                <label class="control-label visible-ie8 visible-ie9">Tài khoản</label>
+                <label class="control-label visible-ie8 visible-ie9">Account</label>
                 <div class="input-icon">
                 <i class="fa fa-user"></i>
-                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Người dùng" name="username" /> </div>
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="user name" name="username" /> </div>
                 
             </div>
             <div class="form-group">
-                <label class="control-label visible-ie8 visible-ie9">Mật khẩu</label>
+                <label class="control-label visible-ie8 visible-ie9">Paswword</label>
                 <div class="input-icon">
                     <i class="fa fa-lock"></i>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Mật khẩu" name="password" id="user-password" />
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="password" name="password" id="user-password" />
                 </div>
             </div>
             <div class="form-actions">
                 <label class="rememberme mt-checkbox mt-checkbox-outline">
-                    <input type="checkbox" id="remember" /> Ghi nhớ
+                    <input type="checkbox" id="remember" /> Remember
                     <span></span>
                 </label>
                 <input type="hidden" name="RememberMe" value="false" />
-                <a class="btn green pull-right sign-in"> Đăng nhập </a>
+                <a class="btn green pull-right sign-in"> Log In </a>
             </div>
         </form>
         <!-- END LOGIN FORM -->

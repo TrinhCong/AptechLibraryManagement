@@ -104,10 +104,10 @@
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"> Xin chào <b id="user_name"></b> <span class="caret"></span>
+						aria-expanded="false"> Welcome <b id="user_name"></b> <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" style="z-index: 2000">
-							<li><a id="sign_out">Đăng xuất</a></li>
+							<li><a id="sign_out">Sign Out</a></li>
 						</ul></li>
 				</ul>
 			</div>

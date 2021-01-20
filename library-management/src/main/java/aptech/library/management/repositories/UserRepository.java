@@ -68,7 +68,7 @@ public class UserRepository implements IUserRepository {
 	public boolean isExist(User theUser){
 		List<User> users=getUsers();
 		for(User user:users){
-			if(user.getId()==theUser.getId()&&user.getUserName().trim().equals(user.getUserName().trim()))
+			if(user.getId()!=theUser.getId()&&user.getUserName().trim().equals(theUser.getUserName().trim()))
 			return true;
 		}
 		return false;

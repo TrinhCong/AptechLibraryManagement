@@ -1,6 +1,7 @@
 class UserHandler {
 
     constructor() {
+        console.log("User Handler Initialized!");
         var that = this;
         that.$table = $('#table');
         that._handleTheme();
@@ -29,6 +30,10 @@ class UserHandler {
                         }
                     }
                     dataSend[dataInput.name] = dataInput.value;
+                }
+                if (!dataSend.age || dataSend.age <= 0) {
+                    Aptech.alert("Quantity must be greater than zero!");
+                    return false;
                 }
                 $.ajax({
                     type: "POST",

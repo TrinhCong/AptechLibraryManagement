@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import aptech.library.management.models.BorrowingBook;
+import aptech.library.management.repositories.BookRepository;
 import aptech.library.management.repositories.BorrowingBookRepository;
 import aptech.library.management.viewmodels.BaseResult;
 import aptech.library.management.viewmodels.ErrorResult;
@@ -21,7 +22,10 @@ import aptech.library.management.viewmodels.SuccessResult;
 public class BorrowingBookController {
 
 	@Autowired
-	private BorrowingBookRepository bookRepository;
+	private BorrowingBookRepository borrowingBookRepository;
+
+	@Autowired
+	private BookRepository bookRepository;
 
 	@GetMapping("")
 	public String Index() {
@@ -32,7 +36,7 @@ public class BorrowingBookController {
 	@ResponseBody
 	public BaseResult List() {
 		try {
-			List<BorrowingBook> theBorrowingBook = bookRepository.getBorrowingBooks();
+			List<BorrowingBook> theBorrowingBook = borrowingBookRepository.getBorrowingBooks();
 			return new SuccessResult(theBorrowingBook);
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");
@@ -41,10 +45,20 @@ public class BorrowingBookController {
 
 	@PostMapping("/save")
 	@ResponseBody
-	public BaseResult SaveBorrowingBook(@RequestBody BorrowingBook book) {
+	public BaseResult SaveBorrowingBook(@RequestBody BorrowingBook borrowingBook) {
 		try {
-			bookRepository.saveBorrowingBook(book);
-			if(book.getId()>0)
+			int amount =borrowingBook.getQuantity();
+			if(borrowingBook.getId()!=0){
+				BorrowingBook existBorrowingBook=	borrowingBookRepository.getBorrowingBook(borrowingBook.getId());
+				if(existBorrowingBook!=null){
+					amount-=existBorrowingBook.getQuantity();
+				}
+			}
+			if(!bookRepository.isValidQuantity(borrowingBook.getBookId(), amount))
+			return new ErrorResult("The borrowing book quantity must be less or equal than the current book quantity in library!");
+		
+			borrowingBookRepository.saveBorrowingBook(borrowingBook);
+			if(borrowingBook.getId()>0)
 			return new SuccessResult();
 			else
 			return new ErrorResult();
@@ -57,7 +71,7 @@ public class BorrowingBookController {
 	@ResponseBody
 	public BaseResult DeleteBorrowingBook(@RequestBody BorrowingBook book) {
 		try {
-			boolean deleted = bookRepository.deleteBorrowingBook(book.getId());
+			boolean deleted = borrowingBookRepository.deleteBorrowingBook(book.getId());
 			if(deleted)
 			return new SuccessResult();
 			else

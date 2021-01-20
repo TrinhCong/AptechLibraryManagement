@@ -671,7 +671,7 @@ var Aptech = function() {
                 message: message,
                 buttons: {
                     ok: {
-                        label: 'Đồng ý',
+                        label: 'OK',
                         className: 'btn-primary'
                     }
                 }
@@ -689,11 +689,11 @@ var Aptech = function() {
                 message: message,
                 buttons: {
                     confirm: {
-                        label: 'Đồng ý',
+                        label: 'Accept',
                         className: 'btn-primary'
                     },
                     cancel: {
-                        label: 'Không',
+                        label: 'Close',
                         className: 'btn-default'
                     }
                 },

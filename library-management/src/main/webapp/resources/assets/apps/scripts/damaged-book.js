@@ -26,6 +26,10 @@ class DamagedBookHandler {
                     }
                     dataSend[dataInput.name] = dataInput.value;
                 }
+                if (!dataSend.quantity || dataSend.quantity <= 0) {
+                    Aptech.alert("Quantity must be greater than zero!");
+                    return false;
+                }
                 $.ajax({
                     type: "POST",
                     url: "/library-management/damaged-book/save",

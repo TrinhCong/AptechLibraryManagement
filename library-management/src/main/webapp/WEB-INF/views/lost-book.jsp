@@ -78,7 +78,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Reason</label>
+					<label for="" class="control-label col-sm-4">Reason<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
 						<textarea name="reason" cols="30" rows="5"
 							class="form-control"></textarea>
@@ -121,7 +122,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Reason</label>
+					<label for="" class="control-label col-sm-4">Reason<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
 						<textarea name="reason" cols="30" rows="5"
 							class="form-control"></textarea>

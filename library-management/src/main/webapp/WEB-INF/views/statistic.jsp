@@ -102,7 +102,7 @@
 			<h4 class="modal-title">Update User</h4>
 		</div>
 		<div class="modal-body">
-			<form action="/NWPProduct/Update" method="post"
+			<form 
 				class="form-horizontal data-form" id="form-update">
 				<input type="hidden" id="product-id" value="0" name="id" />
 				<div class="form-group">
@@ -149,7 +149,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Address</label>
+					<label for="" class="control-label col-sm-4">Address<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
 						<textarea name="address" cols="30" rows="5"
 							class="form-control"></textarea>
@@ -219,7 +220,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Address</label>
+					<label for="" class="control-label col-sm-4">Address<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
 						<textarea name="address" cols="30" rows="5"
 							class="form-control"></textarea>

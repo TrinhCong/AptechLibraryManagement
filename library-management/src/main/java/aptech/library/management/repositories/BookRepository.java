@@ -70,7 +70,7 @@ public class BookRepository implements IBookRepository {
 	public boolean isExist(Book theBook){
 		List<Book> books=getBooks();
 		for(Book book:books){
-			if(book.getId()==theBook.getId()&&book.getCode().trim().equals(book.getCode().trim()))
+			if(book.getId()!=theBook.getId()&&book.getCode().trim().equals(theBook.getCode().trim()))
 			return true;
 		}
 		return false;
@@ -117,8 +117,23 @@ public class BookRepository implements IBookRepository {
 	public void increaseQuantity(int bookId,int amount) {
 		if(amount!=0&&bookId!=0){
 			Book theBook= getBook(bookId);
-			theBook.setQuantity(theBook.getQuantity()+amount);
-			saveBook(theBook);
+			if(theBook!=null) {
+				theBook.setQuantity(theBook.getQuantity()+amount);
+				saveBook(theBook);
+			}
 		}
 	}
+	
+	public boolean isValidQuantity(int bookId, int amount) {
+		if(amount!=0&&bookId!=0){
+			Book theBook= getBook(bookId);;
+			if(theBook!=null) {
+			return theBook.getQuantity()>=amount;
+			}
+		}
+		if(amount==0)
+			return true;
+		return false;
+	}
+	
 }

@@ -26,6 +26,13 @@ class BorrowingBookHandler {
                     }
                     dataSend[dataInput.name] = dataInput.value;
                 }
+                if (!dataSend.rental || dataSend.rental <= 0) {
+                    Aptech.alert("Rental must be greater than zero!");
+                    return false;
+                } else if (!dataSend.quantity || dataSend.quantity <= 0) {
+                    Aptech.alert("Quantity must be greater than zero!");
+                    return false;
+                }
                 $.ajax({
                     type: "POST",
                     url: "/library-management/borrowing-book/save",

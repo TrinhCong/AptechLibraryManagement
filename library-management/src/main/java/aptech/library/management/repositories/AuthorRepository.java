@@ -68,7 +68,7 @@ public class AuthorRepository implements IAuthorRepository {
 	public boolean isExist(Author theAuthor){
 		List<Author> authors=getAuthors();
 		for(Author author:authors){
-			if(author.getId()==theAuthor.getId()&&author.getName().trim().equals(author.getName().trim()))
+			if(author.getId()!=theAuthor.getId()&&author.getName().trim().equals(theAuthor.getName().trim()))
 			return true;
 		}
 		return false;

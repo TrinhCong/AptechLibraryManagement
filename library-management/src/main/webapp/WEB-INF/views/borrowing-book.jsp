@@ -104,7 +104,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Note</label>
+					<label for="" class="control-label col-sm-4">Note<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
 						<textarea name="note" cols="30" rows="5"
 							class="form-control"></textarea>
@@ -163,7 +164,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Note</label>
+					<label for="" class="control-label col-sm-4">Note<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
 						<textarea name="note" cols="30" rows="5"
 							class="form-control"></textarea>

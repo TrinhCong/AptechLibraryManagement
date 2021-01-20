@@ -58,7 +58,7 @@
 			<h4 class="modal-title">Update Book</h4>
 		</div>
 		<div class="modal-body">
-			<form action="/NWPProduct/Update" method="post"
+			<form 
 				class="form-horizontal data-form" id="form-update">
 				<input type="hidden" id="book_id" value="0" name="id" />
 				<div class="form-group">
@@ -110,7 +110,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Description</label>
+					<label for="" class="control-label col-sm-4">Description<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
 						<textarea name="description" cols="30" rows="5"
 							class="form-control"></textarea>
@@ -185,7 +186,8 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Description</label>
+					<label for="" class="control-label col-sm-4">Description<span
+						class="required">*</span></label>
 					<div class="col-sm-8">
 						<textarea name="description" cols="30" rows="5"
 							class="form-control"></textarea>

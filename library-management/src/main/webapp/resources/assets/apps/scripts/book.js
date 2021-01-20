@@ -26,6 +26,13 @@ class BookHandler {
                     }
                     dataSend[dataInput.name] = dataInput.value;
                 }
+                if (!dataSend.rentPrice || dataSend.rentPrice <= 0) {
+                    Aptech.alert("Rent price must be greater than zero!");
+                    return false;
+                } else if (!dataSend.quantity || dataSend.quantity <= 0) {
+                    Aptech.alert("Quantity must be greater than zero!");
+                    return false;
+                }
                 $.ajax({
                     type: "POST",
                     url: "/library-management/book/save",

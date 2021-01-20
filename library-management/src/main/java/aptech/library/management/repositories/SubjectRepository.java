@@ -70,7 +70,7 @@ public class SubjectRepository implements ISubjectRepository {
 	public boolean isExist(Subject theSubject){
 		List<Subject> subjects=getSubjects();
 		for(Subject subject:subjects){
-			if(subject.getId()==theSubject.getId()&&subject.getName().trim().equals(subject.getName().trim()))
+			if(subject.getId()!=theSubject.getId()&&subject.getName().trim().equals(theSubject.getName().trim()))
 			return true;
 		}
 		return false;

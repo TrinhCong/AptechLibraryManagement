@@ -27,17 +27,29 @@ public class BorrowingBook {
     
     @Column(name = "borrowed_at")
     private Date borrowedAt;
-    
+
     @Column(name = "returned_at")
 	private Date returnedAt;
+    
+    @Column(name = "expirated_at")
+	private Date expiratedAt;
+    
+    @Column(name = "returned")
+	private int returned;
 	
     @Column(name = "rental")
     private double rental;
 	
-    @Column(name = "returned")
-    private int returned;
 	
-    @Column(name = "quantity")
+    public int getReturned() {
+		return returned;
+	}
+
+	public void setReturned(int returned) {
+		this.returned = returned;
+	}
+
+	@Column(name = "quantity")
 	private int quantity;
 
     @Column(name = "note")
@@ -91,20 +103,22 @@ public class BorrowingBook {
 		this.returnedAt = returnedAt;
 	}
 
+
+
+	public Date getExpiratedAt() {
+		return expiratedAt;
+	}
+
+	public void setExpiratedAt(Date expiratedAt) {
+		this.expiratedAt = expiratedAt;
+	}
+
 	public double getRental() {
 		return rental;
 	}
 
 	public void setRental(double rental) {
 		this.rental = rental;
-	}
-
-	public int getReturned() {
-		return returned;
-	}
-
-	public void setReturned(int returned) {
-		this.returned = returned;
 	}
 
 	public int getQuantity() {

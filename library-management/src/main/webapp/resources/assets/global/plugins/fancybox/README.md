@@ -35,7 +35,7 @@ additionally include a group name in the `rel` (or `data-fancybox-group`) attrib
 Initialise the script like this:
 
     <script>
-        $(document).ready(function() {
+        $(function() {
             $('.fancybox').fancybox();
         });
     </script>
@@ -43,7 +43,7 @@ Initialise the script like this:
 May also be passed an optional options object which will extend the default values. Example:
 
     <script>
-        $(document).ready(function() {
+        $(function() {
             $('.fancybox').fancybox({
                 padding : 0,
                 openEffect  : 'elastic'

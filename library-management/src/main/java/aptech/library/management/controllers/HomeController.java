@@ -5,9 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-	@RequestMapping("/home")
-	public String Index() {
-		return "home";
+	@RequestMapping("/admin-page")
+	public String Admin() {
+		return "admin-page";
+	}
+	@RequestMapping("/user-page")
+	public String User() {
+		return "user-page";
+	}
+	@RequestMapping("/forbiden-page")
+	public String Forbiden() {
+		return "forbiden-page";
 	}
 	@RequestMapping("/")
 	public String NavigateSlash() {

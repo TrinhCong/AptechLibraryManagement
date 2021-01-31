@@ -4,7 +4,7 @@ var Contact = function () {
         //main function to initiate the module
         init: function () {
 			var map;
-			$(document).ready(function(){
+			$(function(){
 			  map = new GMaps({
 				div: '#gmapbg',
 				lat: -13.004333,

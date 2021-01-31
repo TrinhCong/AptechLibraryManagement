@@ -71,7 +71,7 @@ class LostBookHandler {
         this.dataTable = this.$table.dataTable({
             "processing": true,
             "serverSide": false,
-            "filter": false,
+            "filter": true,
             "datatype": "json",
             "ajax": {
                 type: "POST",
@@ -201,6 +201,6 @@ class LostBookHandler {
         });
     }
 }
-$(document).ready(_ => {
+$(_ => {
     new LostBookHandler();
 });

@@ -80,7 +80,7 @@ class BorrowingBookHandler {
         this.dataTable = this.$table.dataTable({
             "processing": true,
             "serverSide": false,
-            "filter": false,
+            "filter": true,
             "datatype": "json",
             "ajax": {
                 type: "POST",
@@ -229,6 +229,6 @@ class BorrowingBookHandler {
         });
     }
 }
-$(document).ready(_ => {
+$(_ => {
     new BorrowingBookHandler();
 });

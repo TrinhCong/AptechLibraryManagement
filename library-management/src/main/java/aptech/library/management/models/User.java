@@ -1,5 +1,7 @@
 package aptech.library.management.models;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +31,15 @@ public class User {
     
     @Column(name = "gender")
     private int gender;
-    
+
     @Column(name = "address")
     private String address;
-
+    
+    @Column(name = "role")
+    private String role;
+    
+    @Column(name = "birthdate")
+    private Date birthDate;
 	public int getId() {
 		return id;
 	}
@@ -74,5 +81,17 @@ public class User {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 }

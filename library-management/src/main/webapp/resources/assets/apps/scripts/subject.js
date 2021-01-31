@@ -59,7 +59,7 @@ class SubjectHandler {
         this.dataTable = this.$table.dataTable({
             "processing": true,
             "serverSide": false,
-            "filter": false,
+            "filter": true,
             "datatype": "json",
             "ajax": {
                 type: "POST",
@@ -179,6 +179,6 @@ class SubjectHandler {
         });
     }
 }
-$(document).ready(_ => {
+$(_ => {
     new SubjectHandler();
 });

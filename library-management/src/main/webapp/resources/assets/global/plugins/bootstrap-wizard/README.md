@@ -18,14 +18,14 @@ Code Examples
 
 ```javascript
 //basic wizard
-$(document).ready(function() {
+$(function() {
 	$('#rootwizard').bootstrapWizard();
 });
 ```
 
 ```javascript
 //wizard with options and events
-$(document).ready(function() {
+$(function() {
 	$('#rootwizard').bootstrapWizard({
 		tabClass: 'nav nav-pills',
 		onNext: function(tab, navigation, index) {

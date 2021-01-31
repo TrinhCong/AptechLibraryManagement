@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/WEB-INF/views/layouts">
-    <decorator name="admin" page="layout_admin.jsp">
-        <pattern>*home*</pattern>
+    <decorator name="admin" page="admin.jsp">
+        <pattern>*admin-page*</pattern>
+    </decorator>
+    <decorator name="user" page="user.jsp">
+        <pattern>*user-page*</pattern>
     </decorator>
 </decorators>

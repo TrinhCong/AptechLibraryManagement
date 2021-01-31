@@ -1,6 +1,7 @@
 package aptech.library.management.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,17 +28,32 @@ public class UserController {
 	public String Index() {
 		return "user";
 	}
+
 	@GetMapping("/login")
 	public String Login() {
 		return "login";
 	}
 
+	@PostMapping("/login")
+	@ResponseBody
+	public BaseResult Login(@RequestBody User model) {
+		User exist = userRepository.getUsers().stream()
+				.filter(x -> x.getUserName().equalsIgnoreCase(model.getUserName())
+						&& x.getPassword().equals(model.getPassword()))
+				.findFirst().orElse(null);
+		if (exist != null)
+			return new SuccessResult(exist);
+		return new ErrorResult();
+	}
+
 	@PostMapping("/list")
 	@ResponseBody
-	public BaseResult List() {
+	public BaseResult List(int excludeId) {
 		try {
-			List<User> theUser = userRepository.getUsers();
-			return new SuccessResult(theUser);
+			List<User> theUsers = userRepository.getUsers();
+			if (excludeId > 0)
+				theUsers = theUsers.stream().filter(x -> x.getId() != excludeId).collect(Collectors.toList());
+			return new SuccessResult(theUsers);
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");
 		}
@@ -47,13 +63,13 @@ public class UserController {
 	@ResponseBody
 	public BaseResult SaveUser(@RequestBody User user) {
 		try {
-			if(userRepository.isExist(user))
-			return new ErrorResult("The user name already exist!");
+			if (userRepository.isExist(user))
+				return new ErrorResult("The user name already exist!");
 			userRepository.saveUser(user);
-			if(user.getId()>0)
-			return new SuccessResult();
+			if (user.getId() > 0)
+				return new SuccessResult();
 			else
-			return new ErrorResult();
+				return new ErrorResult();
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");
 		}
@@ -64,10 +80,10 @@ public class UserController {
 	public BaseResult DeleteUser(@RequestBody User user) {
 		try {
 			boolean deleted = userRepository.deleteUser(user.getId());
-			if(deleted)
-			return new SuccessResult();
+			if (deleted)
+				return new SuccessResult();
 			else
-			return new ErrorResult();
+				return new ErrorResult();
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");
 		}

@@ -1,5 +1,6 @@
 package aptech.library.management.repositories;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -77,6 +78,7 @@ public class UserRepository implements IUserRepository {
 	public void saveUser(User theUser) {
 		Session session = openSession();
 		if (theUser.getId() == 0) {
+			theUser.setBirthDate(new Date());
 			session.saveOrUpdate(theUser);
 		} else {
 			User userExists = session.byId(User.class).load(theUser.getId());

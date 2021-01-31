@@ -79,7 +79,7 @@ class BookHandler {
         this.dataTable = this.$table.dataTable({
             "processing": true,
             "serverSide": false,
-            "filter": false,
+            "filter": true,
             "datatype": "json",
             "ajax": {
                 type: "POST",
@@ -214,6 +214,6 @@ class BookHandler {
         });
     }
 }
-$(document).ready(_ => {
+$(_ => {
     new BookHandler();
 });

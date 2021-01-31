@@ -19,7 +19,7 @@ If you want the default styles also include the css, if not feel free to style i
 Create a cookiebar with no markup whatsoever! it's like magic ...
 
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(function() {
 		  $.cookieBar();
 		});
 	</script>
@@ -27,7 +27,7 @@ Create a cookiebar with no markup whatsoever! it's like magic ...
 Or, create your cookiebar markup from a simple container, example:
 
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(function() {
 		  $('.cookie-message').cookieBar();
 		});
 	</script>
@@ -39,7 +39,7 @@ Or, create your cookiebar markup from a simple container, example:
 Or, create your cookiebar markup from a simple container with an advanced button, example:
 
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(function() {
 		  $('.cookie-message').cookieBar({ closeButton : '.my-close-button' });
 		});
 	</script>

@@ -29,6 +29,6 @@ class Statistic {
         });
     }
 }
-$(document).ready(_ => {
+$(_ => {
     new Statistic();
 });

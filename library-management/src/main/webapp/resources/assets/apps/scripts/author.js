@@ -60,7 +60,7 @@ class AuthorHandler {
         this.dataTable = this.$table.dataTable({
             "processing": true,
             "serverSide": false,
-            "filter": false,
+            "filter": true,
             "datatype": "json",
             "ajax": {
                 type: "POST",
@@ -180,6 +180,6 @@ class AuthorHandler {
         });
     }
 }
-$(document).ready(_ => {
+$(_ => {
     new AuthorHandler();
 });

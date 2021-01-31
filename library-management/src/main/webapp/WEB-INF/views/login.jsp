@@ -109,7 +109,6 @@
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="/library-management/resources/assets/apps/scripts/account/auth.js" type="text/javascript"></script>
-        <script src="/library-management/resources/assets/apps/scripts/account/login.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <!-- END THEME LAYOUT SCRIPTS -->

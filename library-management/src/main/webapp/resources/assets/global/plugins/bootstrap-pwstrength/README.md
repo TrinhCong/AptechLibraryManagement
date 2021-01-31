@@ -125,7 +125,7 @@ The plugin provides two callback functions, onLoad and onKeyUp.  You can use
 them like this:
 
 ```javascript
-$(document).ready(function () {
+$(function () {
     var options = {};
     options.common = {
         onLoad: function () {
@@ -148,7 +148,7 @@ character classes used. An easy way to increase the security of the passwords
 is to activate this two rules:
 
 ```javascript
-$(document).ready(function () {
+$(function () {
     var options = {};
     options.rules = {
         activated: {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import aptech.library.management.models.Book;
 import aptech.library.management.models.BorrowingBook;
 import aptech.library.management.repositories.BookRepository;
 import aptech.library.management.repositories.BorrowingBookRepository;
@@ -54,8 +55,9 @@ public class BorrowingBookController {
 					amount-=existBorrowingBook.getQuantity();
 				}
 			}
+			Book book =bookRepository.getBook(borrowingBook.getBookId());
 			if(!bookRepository.isValidQuantity(borrowingBook.getBookId(), amount))
-			return new ErrorResult("The borrowing book quantity must be less or equal than the current book quantity in library!");
+			return new ErrorResult("The borrowing book quantity must be less or equal than "+book.getQuantity()+"the current book quantity in library!");
 		
 			borrowingBookRepository.saveBorrowingBook(borrowingBook);
 			if(borrowingBook.getId()>0)

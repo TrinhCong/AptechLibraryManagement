@@ -11,6 +11,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -43,6 +44,21 @@ public class UserRepository implements IUserRepository {
 		}
 		return session;
 	}
+    
+     private int workload = 12;
+	public  String hashPassword(String password) {
+		String salt = BCrypt.gensalt(workload);
+		String hashed_password = BCrypt.hashpw(password, salt);
+		return hashed_password;
+	}
+
+	public  boolean checkPassword(String password, String hashPassword) {
+		boolean password_verified = false;
+		if(null != password &&hashPassword.startsWith("$2a$"))
+			password_verified = BCrypt.checkpw(password, hashPassword);
+		return(password_verified);
+	}
+
 
 	public List<User> getUsers() {
 		Session session = openSession();
@@ -77,6 +93,7 @@ public class UserRepository implements IUserRepository {
 
 	public void saveUser(User theUser) {
 		Session session = openSession();
+		theUser.setPassword(hashPassword(theUser.getPassword()));
 		if (theUser.getId() == 0) {
 			theUser.setBirthDate(new Date());
 			session.saveOrUpdate(theUser);

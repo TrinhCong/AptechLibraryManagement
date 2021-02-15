@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import aptech.library.management.models.Book;
 import aptech.library.management.models.DamagedBook;
+import aptech.library.management.repositories.BookRepository;
 import aptech.library.management.repositories.DamagedBookRepository;
 import aptech.library.management.viewmodels.BaseResult;
 import aptech.library.management.viewmodels.ErrorResult;
@@ -21,7 +23,10 @@ import aptech.library.management.viewmodels.SuccessResult;
 public class DamagedBookController {
 
 	@Autowired
-	private DamagedBookRepository bookRepository;
+	private DamagedBookRepository damagedBookRepository;
+
+	@Autowired
+	private BookRepository bookRepository;
 
 	@GetMapping("")
 	public String Index() {
@@ -32,7 +37,7 @@ public class DamagedBookController {
 	@ResponseBody
 	public BaseResult List() {
 		try {
-			List<DamagedBook> theDamagedBook = bookRepository.getDamagedBooks();
+			List<DamagedBook> theDamagedBook = damagedBookRepository.getDamagedBooks();
 			return new SuccessResult(theDamagedBook);
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");
@@ -41,10 +46,21 @@ public class DamagedBookController {
 
 	@PostMapping("/save")
 	@ResponseBody
-	public BaseResult SaveDamagedBook(@RequestBody DamagedBook book) {
+	public BaseResult SaveDamagedBook(@RequestBody DamagedBook damagedBook) {
 		try {
-			bookRepository.saveDamagedBook(book);
-			if(book.getId()>0)
+			int amount =damagedBook.getQuantity();
+			if(damagedBook.getId()!=0){
+				DamagedBook existDamagedBook=	damagedBookRepository.getDamagedBook(damagedBook.getId());
+				if(existDamagedBook!=null){
+					amount-=existDamagedBook.getQuantity();
+				}
+			}
+			Book book =bookRepository.getBook(damagedBook.getBookId());
+			if(!bookRepository.isValidQuantity(damagedBook.getBookId(), amount))
+			return new ErrorResult("The damaged book quantity must be less or equal than "+book.getQuantity()+"the current book quantity in library!");
+		
+			damagedBookRepository.saveDamagedBook(damagedBook);
+			if(damagedBook.getId()>0)
 			return new SuccessResult();
 			else
 			return new ErrorResult();
@@ -57,7 +73,7 @@ public class DamagedBookController {
 	@ResponseBody
 	public BaseResult DeleteDamagedBook(@RequestBody DamagedBook book) {
 		try {
-			boolean deleted = bookRepository.deleteDamagedBook(book.getId());
+			boolean deleted = damagedBookRepository.deleteDamagedBook(book.getId());
 			if(deleted)
 			return new SuccessResult();
 			else

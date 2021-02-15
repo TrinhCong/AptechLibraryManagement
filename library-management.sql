@@ -37,8 +37,8 @@ CREATE TABLE `books` (
   PRIMARY KEY (`id`),
   KEY `books_FK` (`author_id`),
   KEY `books_FK_1` (`subject_id`),
-  CONSTRAINT `books_FK` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `books_FK_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE
+  CONSTRAINT `books_FK` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ,
+  CONSTRAINT `books_FK_1` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) 
 );
 LOCK TABLES `books` WRITE;
 UNLOCK TABLES;
@@ -57,6 +57,7 @@ CREATE TABLE `users` (
   `age` int DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
   `gender` tinyint DEFAULT NULL,
+  `role` varchar(20) NOT NULL,
   `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ;
@@ -71,6 +72,7 @@ CREATE TABLE `borrowing_books` (
   `book_id` int NOT NULL,
   `borrowed_at` datetime NOT NULL,
   `returned_at` datetime DEFAULT NULL,
+  `expirated_at` datetime DEFAULT NULL,
   `rental` float DEFAULT NULL,
   `returned` tinyint(1) DEFAULT NULL,
   `quantity` int DEFAULT NULL,
@@ -78,8 +80,8 @@ CREATE TABLE `borrowing_books` (
   PRIMARY KEY (`id`),
   KEY `borrowing_books_FK` (`user_id`),
   KEY `borrowing_books_FK_1` (`book_id`),
-  CONSTRAINT `borrowing_books_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `borrowing_books_FK_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE
+  CONSTRAINT `borrowing_books_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ,
+  CONSTRAINT `borrowing_books_FK_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) 
 );
 
 LOCK TABLES `borrowing_books` WRITE;
@@ -95,7 +97,7 @@ CREATE TABLE `damaged_books` (
   `reason` text,
   PRIMARY KEY (`id`),
   KEY `damaged_books_FK` (`book_id`),
-  CONSTRAINT `damaged_books_FK` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE
+  CONSTRAINT `damaged_books_FK` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) 
 );
 
 
@@ -113,7 +115,7 @@ CREATE TABLE `lost_books` (
   `reason` text,
   PRIMARY KEY (`id`),
   KEY `lost_books_FK` (`book_id`),
-  CONSTRAINT `lost_books_FK` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE
+  CONSTRAINT `lost_books_FK` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) 
 );
 
 LOCK TABLES `lost_books` WRITE;

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import aptech.library.management.models.Book;
 import aptech.library.management.models.LostBook;
+import aptech.library.management.repositories.BookRepository;
 import aptech.library.management.repositories.LostBookRepository;
 import aptech.library.management.viewmodels.BaseResult;
 import aptech.library.management.viewmodels.ErrorResult;
@@ -21,7 +23,10 @@ import aptech.library.management.viewmodels.SuccessResult;
 public class LostBookController {
 
 	@Autowired
-	private LostBookRepository bookRepository;
+	private LostBookRepository lostBookRepository;
+
+	@Autowired
+	private BookRepository bookRepository;
 
 	@GetMapping("")
 	public String Index() {
@@ -32,7 +37,7 @@ public class LostBookController {
 	@ResponseBody
 	public BaseResult List() {
 		try {
-			List<LostBook> theLostBook = bookRepository.getLostBooks();
+			List<LostBook> theLostBook = lostBookRepository.getLostBooks();
 			return new SuccessResult(theLostBook);
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");
@@ -41,10 +46,21 @@ public class LostBookController {
 
 	@PostMapping("/save")
 	@ResponseBody
-	public BaseResult SaveLostBook(@RequestBody LostBook book) {
+	public BaseResult SaveLostBook(@RequestBody LostBook lostBook) {
 		try {
-			bookRepository.saveLostBook(book);
-			if(book.getId()>0)
+			int amount =lostBook.getQuantity();
+			if(lostBook.getId()!=0){
+				LostBook existLostBook=	lostBookRepository.getLostBook(lostBook.getId());
+				if(existLostBook!=null){
+					amount-=existLostBook.getQuantity();
+				}
+			}
+			Book book =bookRepository.getBook(lostBook.getBookId());
+			if(!bookRepository.isValidQuantity(lostBook.getBookId(), amount))
+			return new ErrorResult("The lost book quantity must be less or equal than "+book.getQuantity()+"the current book quantity in library!");
+		
+			lostBookRepository.saveLostBook(lostBook);
+			if(lostBook.getId()>0)
 			return new SuccessResult();
 			else
 			return new ErrorResult();
@@ -57,7 +73,7 @@ public class LostBookController {
 	@ResponseBody
 	public BaseResult DeleteLostBook(@RequestBody LostBook book) {
 		try {
-			boolean deleted = bookRepository.deleteLostBook(book.getId());
+			boolean deleted = lostBookRepository.deleteLostBook(book.getId());
 			if(deleted)
 			return new SuccessResult();
 			else

@@ -65,7 +65,7 @@ public class AuthorController {
 			else
 			return new ErrorResult();
 		} catch (Exception ex) {
-			return new ErrorResult("An error has occured! Please try later!");
+			return new ErrorResult("This author is in use and cannot be deleted!");
 		}
 	}
 }

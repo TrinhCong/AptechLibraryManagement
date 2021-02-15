@@ -66,7 +66,7 @@ public class BookController {
 			else
 			return new ErrorResult();
 		} catch (Exception ex) {
-			return new ErrorResult("An error has occured! Please try later!");
+			return new ErrorResult("This book is in use and cannot be deleted!");
 		}
 	}
 }

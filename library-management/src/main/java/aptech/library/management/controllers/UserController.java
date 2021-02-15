@@ -37,9 +37,10 @@ public class UserController {
 	@PostMapping("/login")
 	@ResponseBody
 	public BaseResult Login(@RequestBody User model) {
+		
 		User exist = userRepository.getUsers().stream()
 				.filter(x -> x.getUserName().equalsIgnoreCase(model.getUserName())
-						&& x.getPassword().equals(model.getPassword()))
+						&& userRepository.checkPassword(model.getPassword(), x.getPassword()))
 				.findFirst().orElse(null);
 		if (exist != null)
 			return new SuccessResult(exist);
@@ -85,7 +86,7 @@ public class UserController {
 			else
 				return new ErrorResult();
 		} catch (Exception ex) {
-			return new ErrorResult("An error has occured! Please try later!");
+			return new ErrorResult("This subject is in use and cannot be deleted!");
 		}
 	}
 }

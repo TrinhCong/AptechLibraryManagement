@@ -191,7 +191,7 @@
 		src="<c:url value='/resources/assets/global/plugins/jquery.form.min.js' />"></script>
 	<script
 		src="<c:url value='/resources/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js' />"></script>
-	<script src="<c:url value='/resources/assets/apps/scripts/plugins/datetime.format.js' />"></script>
+	<script src="<c:url value='/resources/assets/global/scripts/time-utils.js' />"></script>
 	<script src="<c:url value='/resources/assets/apps/scripts/borrowing-book.js' />"></script>
 
 </body>

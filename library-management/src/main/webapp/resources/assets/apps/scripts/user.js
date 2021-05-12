@@ -13,6 +13,22 @@ class UserHandler {
         that.$table.find('tbody').on('click', '.delete-item', e => {
             that._deleteItem($(e.target).parents('tr')[0]);
         });
+        
+        $('#modal-create .datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true,
+            container: '#modal-create'
+        });
+        
+        $('#modal-edit .datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true,
+            container: '#modal-edit'
+        });
 
         $('.data-form').ajaxForm({
             beforeSubmit: function(formData, jqForm, options) {
@@ -24,16 +40,11 @@ class UserHandler {
                             Aptech.alert("Please enter all fields!");
                             return false;
                         }
-                        if (dataInput.name == "Email_Pass" && !Aptech.isValidPassword(dataInput.value)) {
-                            Aptech.alert("Please enter the password must be alphanumeric, include at least 6 characters!");
-                            return false;
-                        }
                     }
                     dataSend[dataInput.name] = dataInput.value;
                 }
-                if (!dataSend.age || dataSend.age <= 0) {
-                    Aptech.alert("Quantity must be greater than zero!");
-                    return false;
+                if(dataSend.birthdate){
+                    dataSend.birthdate=new Date(dataSend.birthdate);
                 }
                 $.ajax({
                     type: "POST",
@@ -71,12 +82,13 @@ class UserHandler {
             "filter": true,
             "datatype": "json",
             "ajax": {
-                type: "POST",
+                type: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 url: "/library-management/user/list",
                 data: function(d) {
-                    return JSON.stringify(d);
+                	d.excludeId=localStorage.getItem('userid');
+                    return d;
                 },
             },
 
@@ -100,8 +112,11 @@ class UserHandler {
                 title: 'Full Name',
                 data: "displayName"
             }, {
-                title: 'Age',
-                data: "age"
+                title: 'Date Of Birth',
+                data: "birthDate",
+                render: function(data, type, row, meta) {
+                    return  data ?new Date(data).toString("dd-MM-yyyy"):data;
+                }
             }, {
                 title: 'Address',
                 data: "address"

@@ -10,27 +10,28 @@
 </head>
 
 <body>
-	<link rel="stylesheet" type="text/css"
-		href="<c:url value='/resources/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css'/>" />
-	<link rel="stylesheet" type="text/css"
-		href="<c:url value='/resources/assets/global/plugins/datatables/datatables.min.css'/>" />
-	<link rel="stylesheet" type="text/css"
-		href="<c:url value='/resources/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css'/>" />
-	<link rel="stylesheet" type="text/css"
-		href="<c:url value='/resources/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css'/>" />
-	<style>
-		#table_wrapper {
-			margin-bottom: 100px !important;
-		}
-		.portlet.light.no-margin{
-			height: 100% !important;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/assets/global/plugins/datatables/datatables.min.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css'/>" />
+
+<style>
+#table_wrapper {
+	margin-bottom: 100px !important;
+}
+
+.portlet.light.no-margin {
+	height: 100% !important;
+}
+</style>
 
 	<div class="portlet light no-margin">
 		<div class="portlet-title">
 			<div class="caption">
-				<span class="caption-subject font-green-sharp bold uppercase">Users Management</span>
+				<span class="caption-subject font-green-sharp bold uppercase">Users
+					Management</span>
 			</div>
 		</div>
 		<div class="portlet-body">
@@ -58,8 +59,7 @@
 			<h4 class="modal-title">Update User</h4>
 		</div>
 		<div class="modal-body">
-			<form 
-				class="form-horizontal data-form" id="form-update">
+			<form class="form-horizontal data-form" id="form-update">
 				<input type="hidden" id="product-id" value="0" name="id" />
 				<div class="form-group">
 					<label for="" class="control-label col-sm-4">Full Name<span
@@ -73,8 +73,7 @@
 					<label for="" class="control-label col-sm-4">User Name<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" name="userName"
-							required />
+						<input type="text" class="form-control" name="userName" required />
 					</div>
 				</div>
 				<div class="form-group">
@@ -86,11 +85,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Age<span
+					<label for="" class="control-label col-sm-4">Date of birth<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="number" class="form-control" name="age"
-							required />
+						<input type="date" class="form-control" name="birthdate" required />
 					</div>
 				</div>
 				<div class="form-group">
@@ -108,8 +106,7 @@
 					<label for="" class="control-label col-sm-4">Address<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<textarea name="address" cols="30" rows="5"
-							class="form-control"></textarea>
+						<textarea name="address" cols="30" rows="5" class="form-control"></textarea>
 					</div>
 				</div>
 			</form>
@@ -130,8 +127,8 @@
 			<h4 class="modal-title">Add User</h4>
 		</div>
 		<div class="modal-body">
-			<form action="/library-management/user/save" class="form-horizontal data-form"
-				method="post" id="form-create">
+			<form action="/library-management/user/save"
+				class="form-horizontal data-form" method="post" id="form-create">
 				<div class="form-group">
 					<label for="" class="control-label col-sm-4">Full Name<span
 						class="required">*</span></label>
@@ -144,8 +141,7 @@
 					<label for="" class="control-label col-sm-4">User Name<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" name="userName"
-							required />
+						<input type="text" class="form-control" name="userName" required />
 					</div>
 				</div>
 				<div class="form-group">
@@ -157,11 +153,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="" class="control-label col-sm-4">Age<span
+					<label for="" class="control-label col-sm-4">Date of birth<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="number" class="form-control" name="age"
-							required />
+						<input type="date" class="form-control" name="birthdate" required />
 					</div>
 				</div>
 				<div class="form-group">
@@ -179,8 +174,7 @@
 					<label for="" class="control-label col-sm-4">Address<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<textarea name="address" cols="30" rows="5"
-							class="form-control"></textarea>
+						<textarea name="address" cols="30" rows="5" class="form-control"></textarea>
 					</div>
 				</div>
 			</form>
@@ -203,6 +197,10 @@
 		src="<c:url value='/resources/assets/global/plugins/jquery.form.min.js' />"></script>
 	<script
 		src="<c:url value='/resources/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js' />"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' />"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js' />"></script>
 	<script src="<c:url value='/resources/assets/apps/scripts/user.js' />"></script>
 
 </body>

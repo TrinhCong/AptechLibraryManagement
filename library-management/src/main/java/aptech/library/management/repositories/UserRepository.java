@@ -103,11 +103,12 @@ public class UserRepository implements IUserRepository {
 			if (userExists != null) {
 				Transaction transaction = session.beginTransaction();
 				userExists.setAddress(theUser.getAddress());
-				userExists.setAge(theUser.getAge());
+				userExists.setBirthDate(theUser.getBirthDate());
 				userExists.setDisplayName(theUser.getDisplayName());
 				userExists.setGender(theUser.getGender());
 				userExists.setPassword(theUser.getPassword());
 				userExists.setUserName(theUser.getUserName());
+				userExists.setRole(theUser.getRole());
 				session.saveOrUpdate(userExists);
 				transaction.commit();
 			}

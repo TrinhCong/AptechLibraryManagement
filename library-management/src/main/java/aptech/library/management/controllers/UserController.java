@@ -47,7 +47,7 @@ public class UserController {
 		return new ErrorResult();
 	}
 
-	@PostMapping("/list")
+	@GetMapping("/list")
 	@ResponseBody
 	public BaseResult List(int excludeId) {
 		try {
@@ -86,7 +86,7 @@ public class UserController {
 			else
 				return new ErrorResult();
 		} catch (Exception ex) {
-			return new ErrorResult("This subject is in use and cannot be deleted!");
+			return new ErrorResult("This user is in use and cannot be deleted!");
 		}
 	}
 }

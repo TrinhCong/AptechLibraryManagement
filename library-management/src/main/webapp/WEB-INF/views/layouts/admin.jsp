@@ -124,7 +124,7 @@
 	src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js' />"
 	type="text/javascript"></script>
 <script
-	src="<c:url value='/resources/assets/apps/scripts/plugins/datetime.format.js' />"></script>
+	src="<c:url value='/resources/assets/global/scripts/time-utils.js' />"></script>
 <script
 	src="<c:url value='/resources/assets/global/scripts/enums.js' />"></script>
 <script src="<c:url value='/resources/assets/global/scripts/app.js' />"></script>

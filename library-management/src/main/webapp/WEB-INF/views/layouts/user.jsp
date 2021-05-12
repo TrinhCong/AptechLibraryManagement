@@ -30,6 +30,7 @@
 	href="<c:url value='/resources/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css'/>" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css'/>" />
+
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 
@@ -65,7 +66,8 @@
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"> Welcome <b id="user_name"></b> <span class="caret"></span>
+						aria-expanded="false"> Welcome <b id="user_name"></b> <span
+							class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" style="z-index: 2000">
 							<li><a id="sign_out">Sign Out</a></li>
@@ -96,44 +98,44 @@
 	<!-- END FOOTER -->
 
 
-<script
-	src="<c:url value='/resources/assets/global/plugins/jquery.min.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/bootstrap/js/bootstrap.min.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/mustache.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/js.cookie.min.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/jquery.blockui.min.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js' />"
-	type="text/javascript"></script>
-<script
-	src="<c:url value='/resources/assets/apps/scripts/plugins/datetime.format.js' />"></script>
-<script
-	src="<c:url value='/resources/assets/global/scripts/enums.js' />"></script>
-<script src="<c:url value='/resources/assets/global/scripts/app.js' />"></script>
-<script
-	src="<c:url value='/resources/assets/global/plugins/bootbox/bootbox.min.js' />"></script>
-<script
-	src="<c:url value='/resources/assets/layouts/layout2/scripts/layout.js' />"></script>
-<script
-	src="<c:url value='/resources/assets/apps/scripts/account/auth.js' />"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/jquery.min.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/bootstrap/js/bootstrap.min.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/mustache.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/js.cookie.min.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/jquery.blockui.min.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/bootstrap-modal/js/bootstrap-modal.js' />"
+		type="text/javascript"></script>
+	<script
+		src="<c:url value='/resources/assets/global/scripts/time-utils.js' />"></script>
+	<script
+		src="<c:url value='/resources/assets/global/scripts/enums.js' />"></script>
+	<script src="<c:url value='/resources/assets/global/scripts/app.js' />"></script>
+	<script
+		src="<c:url value='/resources/assets/global/plugins/bootbox/bootbox.min.js' />"></script>
+	<script
+		src="<c:url value='/resources/assets/layouts/layout2/scripts/layout.js' />"></script>
+	<script
+		src="<c:url value='/resources/assets/apps/scripts/account/auth.js' />"></script>
 
 </body>
 </html>

@@ -34,20 +34,10 @@ public class BorrowingBook {
     @Column(name = "expirated_at")
 	private Date expiratedAt;
     
-    @Column(name = "returned")
-	private int returned;
 	
     @Column(name = "rental")
     private double rental;
 	
-	
-    public int getReturned() {
-		return returned;
-	}
-
-	public void setReturned(int returned) {
-		this.returned = returned;
-	}
 
 	@Column(name = "quantity")
 	private int quantity;

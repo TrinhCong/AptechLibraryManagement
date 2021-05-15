@@ -2,10 +2,20 @@ class BookHandler {
 
     constructor() {
         var that = this;
+        console.log("Book view Initialized!");
         that.$table = $('#table');
         that._handleTheme();
         that._loadTable();
+
         $('#create').on('click', that._createItem);
+        that._role = localStorage.getItem('role');
+        if (that._role != "admin")
+            $('#create').remove();
+            
+        $('#filter').on('change',_=>{
+            that.dataTable.api().ajax.reload();
+        });
+        
         that.$table.find('tbody').on('click', '.edit-item', e => {
             that._editItem($(e.target).parents('tr')[0]);
         });
@@ -14,7 +24,7 @@ class BookHandler {
         });
 
         $('.data-form').ajaxForm({
-            beforeSubmit: function(formData, jqForm, options) {
+            beforeSubmit: function (formData, jqForm, options) {
                 const dataSend = {};
                 for (var i = 0; i < formData.length; i++) {
                     var dataInput = formData[i];
@@ -53,7 +63,7 @@ class BookHandler {
                 })
                 return false;
             },
-            success: function(responseText, statusText, xhr, $form) {
+            success: function (responseText, statusText, xhr, $form) {
 
             }
         });
@@ -76,19 +86,61 @@ class BookHandler {
     }
     _loadTable() {
         var that = this;
+        that._columns = [{
+            title: 'Book code',
+            data: "code"
+        }, {
+            title: 'Book title',
+            data: "title"
+        }, {
+            title: 'Subject',
+            data: "subject.name"
+        }, {
+            title: 'Author',
+            data: "author.name"
+        }, {
+            title: 'Rent Price',
+            data: "rentPrice"
+        }, {
+            title: 'Quantity',
+            data: "quantity",
+        }, {
+            title: 'Description',
+            data: "description",
+        }];
+        if (that._role == "admin")
+            that._columns.push({
+                title: 'Actions',
+                render: function (data, type, row, meta) {
+                    return `<a class="btn btn-xs green edit-item" role="button" data-toggle="modal" href="#modal-edit" aria-expanded="false">
+                            Edit
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a class="btn btn-xs red delete-item" role="button" aria-expanded="false">
+                            Delete
+                            <i class="fa fa-trash"></i>
+                        </a>`;
+                },
+                width: '180px',
+                className: 'text-center'
+            });
         this.dataTable = this.$table.dataTable({
             "processing": true,
             "serverSide": false,
             "filter": true,
             "datatype": "json",
             "ajax": {
-                type: "POST",
+                type: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 url: "/library-management/book/list",
-                data: function(d) {
-                    return JSON.stringify(d);
+                data: function (d) {
+                    d.onlyAvailable=$("#filter").val()=="1";
+                    return d;
                 },
+                dataSrc(data){
+                    return data||[];
+                }
             },
 
             // "language": {
@@ -104,46 +156,11 @@ class BookHandler {
             "pageLength": 5,
             "pagingType": "bootstrap_full_number",
 
-            columns: [{
-                title: 'Book code',
-                data: "code"
-            }, {
-                title: 'Book title',
-                data: "title"
-            }, {
-                title: 'Subject',
-                data: "subject.name"
-            }, {
-                title: 'Author',
-                data: "author.name"
-            }, {
-                title: 'Rent Price',
-                data: "rentPrice"
-            }, {
-                title: 'Quantity',
-                data: "quantity",
-            }, {
-                title: 'Description',
-                data: "description",
-            }, {
-                title: 'Actions',
-                render: function(data, type, row, meta) {
-                    return `<a class="btn btn-xs green edit-item" role="button" data-toggle="modal" href="#modal-edit" aria-expanded="false">
-						        Edit
-						        <i class="fa fa-pencil"></i>
-						    </a>
-						    <a class="btn btn-xs red delete-item" role="button" aria-expanded="false">
-						        Delete
-						        <i class="fa fa-trash"></i>
-						    </a>`;
-                },
-                width: '180px',
-                className: 'text-center'
-            }],
-            "initComplete": function(settings, json) {
+            columns: that._columns,
+            "initComplete": function (settings, json) {
                 $(".dataTables_filter input")
                     .unbind()
-                    .bind('keyup change', function(e) {
+                    .bind('keyup change', function (e) {
                         if (e.keyCode == 13 || this.value == "") {
                             that.dataTable
                                 .fnFilter(this.value);
@@ -169,7 +186,7 @@ class BookHandler {
     }
     _deleteItem(selectedRow) {
         var data = this.dataTable.fnGetData(selectedRow);
-        Aptech.confirm("Are you sure to delete this book?", function(result) {
+        Aptech.confirm("Are you sure to delete this book?", function (result) {
             if (result) {
                 let param = { id: data.id };
                 console.log(param);
@@ -179,7 +196,7 @@ class BookHandler {
                     type: 'post',
                     contentType: "application/json; charset=utf-8",
                     dataType: 'json',
-                }).done(function(res) {
+                }).done(function (res) {
                     if (res.success) {
                         $('#table').DataTable().ajax.reload();
                         Aptech.alert("Deleted successful!");
@@ -206,10 +223,10 @@ class BookHandler {
         }
     }
     _initLoading() {
-        $(document).ajaxStart(function() {
+        $(document).ajaxStart(function () {
             App.startPageLoading();
         });
-        $(document).ajaxComplete(function() {
+        $(document).ajaxComplete(function () {
             App.stopPageLoading();
         });
     }

@@ -30,7 +30,7 @@
 	<div class="portlet light no-margin">
 		<div class="portlet-title">
 			<div class="caption">
-				<span class="caption-subject font-green-sharp bold uppercase">Books Management</span>
+				<span class="caption-subject font-green-sharp bold uppercase">Damaged Books Management</span>
 			</div>
 		</div>
 		<div class="portlet-body">

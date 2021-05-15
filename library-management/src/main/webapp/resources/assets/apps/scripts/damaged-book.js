@@ -62,11 +62,11 @@ class DamagedBookHandler {
     _loadData() {
         this.$users = $("[name=userId]").empty();
         this.$books = $("[name=bookId]").empty();
-        $.post("/library-management/user/list").done(xhr => {
+        $.get(`/library-management/user/list?excludeId=${localStorage.getItem('userid')}`).done(xhr => {
             if (xhr.data)
                 xhr.data.forEach(item => this.$users.append($("<option/>").text(item.displayName).val(item.id)));
         });
-        $.post("/library-management/book/list").done(xhr => {
+        $.get("/library-management/book/list").done(xhr => {
             if (xhr.data)
                 xhr.data.forEach(item => this.$books.append($("<option/>").text(item.title).val(item.id)));
         });

@@ -30,7 +30,7 @@
 	<div class="portlet light no-margin">
 		<div class="portlet-title">
 			<div class="caption">
-				<span class="caption-subject font-green-sharp bold uppercase">Books Management</span>
+				<span class="caption-subject font-green-sharp bold uppercase">Borrowing Books Management</span>
 			</div>
 		</div>
 		<div class="portlet-body">
@@ -41,6 +41,15 @@
 							href="#modal-create" id="create">Lease Book <i
 							class="fa fa-plus"></i>
 						</a>
+					</div>
+					<div class="col-md-6">
+						<select  class="form-control" id="filter" style="width: 145px;
+						float: right;">
+							<option value="0">All</option>
+							<option value="1">Borrowing</option>
+							<option value="2">Returned</option>
+						</select>
+						<div style="float:right; padding:7px">Filter: </div>
 					</div>
 				</div>
 			</div>

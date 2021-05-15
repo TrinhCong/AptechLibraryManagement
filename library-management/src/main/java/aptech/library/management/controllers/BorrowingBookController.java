@@ -33,12 +33,23 @@ public class BorrowingBookController {
 		return "borrowing-book";
 	}
 
-	@PostMapping("/list")
+	@GetMapping("/list")
 	@ResponseBody
-	public BaseResult List() {
+	public BaseResult List(int userId,int status) {
 		try {
-			List<BorrowingBook> theBorrowingBook = borrowingBookRepository.getBorrowingBooks();
-			return new SuccessResult(theBorrowingBook);
+			List<BorrowingBook> theBorrowingBooks = borrowingBookRepository.getBorrowingBooks();
+			if(userId>0)
+			theBorrowingBooks=(java.util.List<BorrowingBook>) theBorrowingBooks.stream()
+				.filter(x -> x.getUserId()==userId);
+			if(status==1){
+				theBorrowingBooks=(java.util.List<BorrowingBook>) theBorrowingBooks.stream()
+					.filter(x -> x.getBorrowedAt()!=null&& x.getReturnedAt()==null);
+			}
+			else if(status==2){
+			theBorrowingBooks=(java.util.List<BorrowingBook>) theBorrowingBooks.stream()
+				.filter(x -> x.getReturnedAt()!=null);
+			}
+			return new SuccessResult(theBorrowingBooks);
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");
 		}

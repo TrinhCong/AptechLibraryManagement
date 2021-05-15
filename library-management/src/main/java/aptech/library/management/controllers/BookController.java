@@ -28,12 +28,16 @@ public class BookController {
 		return "book";
 	}
 
-	@PostMapping("/list")
+	@GetMapping("/list")
 	@ResponseBody
-	public BaseResult List() {
+	public BaseResult List(boolean onlyAvailable) {
 		try {
-			List<Book> theBook = bookRepository.getBooks();
-			return new SuccessResult(theBook);
+			List<Book> theBooks = bookRepository.getBooks();
+
+			if(onlyAvailable)
+			theBooks=(java.util.List<Book>) theBooks.stream()
+				.filter(x -> x.getQuantity()>0);
+			return new SuccessResult(theBooks);
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");
 		}

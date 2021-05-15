@@ -61,7 +61,7 @@ class LostBookHandler {
     }
     _loadData() {
         this.$books = $("[name=bookId]").empty();
-        $.post("/library-management/book/list").done(xhr => {
+        $.get("/library-management/book/list").done(xhr => {
             if (xhr.data)
                 xhr.data.forEach(item => this.$books.append($("<option/>").text(item.title).val(item.id)));
         });

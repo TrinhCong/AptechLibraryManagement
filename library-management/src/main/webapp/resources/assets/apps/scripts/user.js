@@ -14,21 +14,21 @@ class UserHandler {
             that._deleteItem($(e.target).parents('tr')[0]);
         });
         
-        $('#modal-create .datepicker').datepicker({
-            format: "dd/mm/yyyy",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true,
-            container: '#modal-create'
-        });
+        // $('#modal-create .datepicker').datepicker({
+        //     format: "dd/mm/yyyy",
+        //     todayBtn: "linked",
+        //     autoclose: true,
+        //     todayHighlight: true,
+        //     container: '#modal-create'
+        // });
         
-        $('#modal-edit .datepicker').datepicker({
-            format: "dd/mm/yyyy",
-            todayBtn: "linked",
-            autoclose: true,
-            todayHighlight: true,
-            container: '#modal-edit'
-        });
+        // $('#modal-edit .datepicker').datepicker({
+        //     format: "dd/mm/yyyy",
+        //     todayBtn: "linked",
+        //     autoclose: true,
+        //     todayHighlight: true,
+        //     container: '#modal-edit'
+        // });
 
         $('.data-form').ajaxForm({
             beforeSubmit: function(formData, jqForm, options) {
@@ -43,9 +43,7 @@ class UserHandler {
                     }
                     dataSend[dataInput.name] = dataInput.value;
                 }
-                if(dataSend.birthdate){
-                    dataSend.birthdate=new Date(dataSend.birthdate);
-                }
+                
                 $.ajax({
                     type: "POST",
                     url: "/library-management/user/save",
@@ -118,6 +116,12 @@ class UserHandler {
                     return  data ?new Date(data).toString("dd-MM-yyyy"):data;
                 }
             }, {
+                title: 'Permission',
+                data: "role",
+                render: function(data, type, row, meta) {
+                    return  data =='admin'?"Administrator":"User";
+                }
+            }, {
                 title: 'Address',
                 data: "address"
             }, {
@@ -166,6 +170,8 @@ class UserHandler {
         var data = this.dataTable.fnGetData(selectedRow);
         App.populateFormWithData('#form-update', data);
         $('#form-update').find('[name=gender]').find(`option[value=${data.gender}]`).attr('selected', 'selected');
+        $("#form-update [name=birthDate]").val( new Date(data.birthDate).toString("yyyy-MM-dd"));
+        $("#form-update [name=password]").val("");
         $('.icon').unbind('click').on('click', this._showHidePassInput);
     }
     _deleteItem(selectedRow) {

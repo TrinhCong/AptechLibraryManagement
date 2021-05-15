@@ -93,7 +93,6 @@ public class UserRepository implements IUserRepository {
 
 	public void saveUser(User theUser) {
 		Session session = openSession();
-		theUser.setPassword(hashPassword(theUser.getPassword()));
 		if (theUser.getId() == 0) {
 			theUser.setBirthDate(new Date());
 			session.saveOrUpdate(theUser);
@@ -106,7 +105,8 @@ public class UserRepository implements IUserRepository {
 				userExists.setBirthDate(theUser.getBirthDate());
 				userExists.setDisplayName(theUser.getDisplayName());
 				userExists.setGender(theUser.getGender());
-				userExists.setPassword(theUser.getPassword());
+				if(theUser.getPassword()!=null&&!theUser.getPassword().isEmpty())
+					userExists.setPassword(hashPassword(theUser.getPassword()));
 				userExists.setUserName(theUser.getUserName());
 				userExists.setRole(theUser.getRole());
 				session.saveOrUpdate(userExists);

@@ -2,10 +2,19 @@ class BorrowingBookHandler {
 
     constructor() {
         var that = this;
+        console.log("Initialized borrowing view!")
         that.$table = $('#table');
         that._handleTheme();
         that._loadTable();
         $('#create').on('click', that._createItem);
+        that._role = localStorage.getItem('role');
+        if (that._role != "admin")
+            $('#create').remove();
+            
+        $('#filter').on('change',_=>{
+            that.dataTable.api().ajax.reload();
+        });
+        
         that.$table.find('tbody').on('click', '.edit-item', e => {
             that._editItem($(e.target).parents('tr')[0]);
         });
@@ -14,7 +23,7 @@ class BorrowingBookHandler {
         });
 
         $('.data-form').ajaxForm({
-            beforeSubmit: function(formData, jqForm, options) {
+            beforeSubmit: function (formData, jqForm, options) {
                 const dataSend = {};
                 for (var i = 0; i < formData.length; i++) {
                     var dataInput = formData[i];
@@ -53,7 +62,7 @@ class BorrowingBookHandler {
                 })
                 return false;
             },
-            success: function(responseText, statusText, xhr, $form) {
+            success: function (responseText, statusText, xhr, $form) {
 
             }
         });
@@ -65,31 +74,83 @@ class BorrowingBookHandler {
     _loadData() {
         this.$users = $("[name=userId]").empty();
         this.$books = $("[name=bookId]").empty();
-        $.post("/library-management/user/list").done(xhr => {
-            console.log(xhr);
+        $.get(`/library-management/user/list?excludeId=${localStorage.getItem('userid')}`).done(xhr => {
             if (xhr.data)
                 xhr.data.forEach(item => this.$users.append($("<option/>").text(item.displayName).val(item.id)));
         });
-        $.post("/library-management/book/list").done(xhr => {
+        $.get("/library-management/book/list").done(xhr => {
             if (xhr.data)
                 xhr.data.forEach(item => this.$books.append($("<option/>").text(item.title).val(item.id)));
         });
     }
     _loadTable() {
         var that = this;
+
+        that._columns = [{
+            title: 'User',
+            data: "user.displayName"
+        }, {
+            title: 'Book',
+            data: "book.title"
+        }, {
+            title: 'Borrowed At',
+            data: "borrowedAt",
+            render: function (data, type, row, meta) {
+                let dateStr = $.dateTime.dateToString(new Date(data), 'HH:mm dd/MM/yyyy');
+                return dateStr.indexOf("1970") > -1 ? "" : dateStr;
+            }
+        }, {
+            title: 'Rent Price',
+            data: "rental"
+        }, {
+            title: 'Quantity',
+            data: "quantity",
+        }, {
+            title: 'Returned At',
+            data: "returnedAt",
+            render: function (data, type, row, meta) {
+                let dateStr = $.dateTime.dateToString(new Date(data), 'HH:mm dd/MM/yyyy');
+                return dateStr.indexOf("1970") > -1 ? "" : dateStr;
+            }
+        }, {
+            title: 'Note',
+            data: "note",
+        }];
+        if (that._role == "admin")
+            that._columns.push({
+                title: 'Actions',
+                render: function (data, type, row, meta) {
+                    return `<a class="btn btn-xs green edit-item" role="button" data-toggle="modal" href="#modal-edit" aria-expanded="false">
+                                Edit
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a class="btn btn-xs red delete-item" role="button" aria-expanded="false">
+                                Delete
+                                <i class="fa fa-trash"></i>
+                            </a>`;
+                },
+                width: '180px',
+                className: 'text-center'
+            });
         this.dataTable = this.$table.dataTable({
             "processing": true,
             "serverSide": false,
             "filter": true,
             "datatype": "json",
             "ajax": {
-                type: "POST",
+                type: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
                 url: "/library-management/borrowing-book/list",
-                data: function(d) {
-                    return JSON.stringify(d);
+                data: function (d) {
+                    if (that._role != "admin")
+                        d.userId = localStorage.getItem('userid');
+                        d.status=Number($("#filter").val());
+                    return d;
                 },
+                dataSrc(data){
+                	return data||[];
+                }
             },
 
             // "language": {
@@ -105,60 +166,11 @@ class BorrowingBookHandler {
             "pageLength": 5,
             "pagingType": "bootstrap_full_number",
 
-            columns: [{
-                title: 'User',
-                data: "user.displayName"
-            }, {
-                title: 'Book',
-                data: "book.title"
-            }, {
-                title: 'Borrowed At',
-                data: "borrowedAt",
-                render: function(data, type, row, meta) {
-                    let dateStr = $.dateTime.dateToString(new Date(data), 'HH:mm dd/MM/yyyy');
-                    return dateStr.indexOf("1970") > -1 ? "" : dateStr;
-                }
-            }, {
-                title: 'Rent Price',
-                data: "rental"
-            }, {
-                title: 'Quantity',
-                data: "quantity",
-            }, {
-                title: 'Status',
-                data: "returned",
-                render: function(data, type, row, meta) {
-                    return data === 0 ? "<span class='text-warning'>Borrowing</span>" : "<span class='text-success'>Returned</span>";
-                }
-            }, {
-                title: 'Returned At',
-                data: "returnedAt",
-                render: function(data, type, row, meta) {
-                    let dateStr = $.dateTime.dateToString(new Date(data), 'HH:mm dd/MM/yyyy');
-                    return dateStr.indexOf("1970") > -1 ? "" : dateStr;
-                }
-            }, {
-                title: 'Note',
-                data: "note",
-            }, {
-                title: 'Actions',
-                render: function(data, type, row, meta) {
-                    return `<a class="btn btn-xs green edit-item" role="button" data-toggle="modal" href="#modal-edit" aria-expanded="false">
-						        Edit
-						        <i class="fa fa-pencil"></i>
-						    </a>
-						    <a class="btn btn-xs red delete-item" role="button" aria-expanded="false">
-						        Delete
-						        <i class="fa fa-trash"></i>
-						    </a>`;
-                },
-                width: '180px',
-                className: 'text-center'
-            }],
-            "initComplete": function(settings, json) {
+            columns: that._columns,
+            "initComplete": function (settings, json) {
                 $(".dataTables_filter input")
                     .unbind()
-                    .bind('keyup change', function(e) {
+                    .bind('keyup change', function (e) {
                         if (e.keyCode == 13 || this.value == "") {
                             that.dataTable
                                 .fnFilter(this.value);
@@ -184,7 +196,7 @@ class BorrowingBookHandler {
     }
     _deleteItem(selectedRow) {
         var data = this.dataTable.fnGetData(selectedRow);
-        Aptech.confirm("Are you sure to delete this borrowing-book?", function(result) {
+        Aptech.confirm("Are you sure to delete this borrowing-book?", function (result) {
             if (result) {
                 let param = { id: data.id };
                 console.log(param);
@@ -194,7 +206,7 @@ class BorrowingBookHandler {
                     type: 'post',
                     contentType: "application/json; charset=utf-8",
                     dataType: 'json',
-                }).done(function(res) {
+                }).done(function (res) {
                     if (res.success) {
                         $('#table').DataTable().ajax.reload();
                         Aptech.alert("Deleted successful!");
@@ -221,10 +233,10 @@ class BorrowingBookHandler {
         }
     }
     _initLoading() {
-        $(document).ajaxStart(function() {
+        $(document).ajaxStart(function () {
             App.startPageLoading();
         });
-        $(document).ajaxComplete(function() {
+        $(document).ajaxComplete(function () {
             App.stopPageLoading();
         });
     }

@@ -42,6 +42,14 @@
 							class="fa fa-plus"></i>
 						</a>
 					</div>
+					<div class="col-md-6">
+						<select  class="form-control" id="filter" style="width: 145px;
+						float: right;">
+							<option value="0">All Book</option>
+							<option value="1">Available</option>
+						</select>
+						<div style="float:right; padding:7px">Filter: </div>
+					</div>
 				</div>
 			</div>
 			<table class="table table-bordered table-hover table-striped"

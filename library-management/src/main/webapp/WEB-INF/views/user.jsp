@@ -78,17 +78,26 @@
 				</div>
 				<div class="form-group">
 					<label for="" class="control-label col-sm-4">Password<span
+						class="required"></span></label>
+					<div class="col-sm-8">
+						<input type="password" class="form-control" name="password"  />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Role<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="password" class="form-control" name="password"
-							required />
+						<select class="form-control" name="role">
+							<option value="user">User</option>
+							<option value="admin">Administrator</option>
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="" class="control-label col-sm-4">Date of birth<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="date" class="form-control" name="birthdate" required />
+						<input type="date" class="form-control" name="birthDate" required />
 					</div>
 				</div>
 				<div class="form-group">
@@ -153,10 +162,20 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="" class="control-label col-sm-4">Role<span
+						class="required">*</span></label>
+					<div class="col-sm-8">
+						<select class="form-control" name="role">
+							<option value="user">User</option>
+							<option value="admin">Administrator</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="" class="control-label col-sm-4">Date of birth<span
 						class="required">*</span></label>
 					<div class="col-sm-8">
-						<input type="date" class="form-control" name="birthdate" required />
+						<input type="date" class="form-control" name="birthDate" required />
 					</div>
 				</div>
 				<div class="form-group">

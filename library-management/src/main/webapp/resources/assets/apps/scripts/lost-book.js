@@ -109,8 +109,7 @@ class LostBookHandler {
                 title: 'Updated At',
                 data: "updatedAt",
                 render: function(data, type, row, meta) {
-                    let dateStr = $.dateTime.dateToString(new Date(data), 'HH:mm dd/MM/yyyy');
-                    return dateStr.indexOf("1970") > -1 ? "" : dateStr;
+                    return data ? new Date(data).toString('HH:mm dd/MM/yyyy') : "";
                 }
             }, {
                 title: 'Actions',

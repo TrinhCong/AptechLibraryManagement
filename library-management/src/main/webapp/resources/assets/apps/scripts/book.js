@@ -11,11 +11,11 @@ class BookHandler {
         that._role = localStorage.getItem('role');
         if (that._role != "admin")
             $('#create').remove();
-            
-        $('#filter').on('change',_=>{
+
+        $('#filter').on('change', _ => {
             that.dataTable.api().ajax.reload();
         });
-        
+
         that.$table.find('tbody').on('click', '.edit-item', e => {
             that._editItem($(e.target).parents('tr')[0]);
         });
@@ -135,11 +135,11 @@ class BookHandler {
                 dataType: 'json',
                 url: "/library-management/book/list",
                 data: function (d) {
-                    d.onlyAvailable=$("#filter").val()=="1";
+                    d.onlyAvailable = $("#filter").val() == "1";
                     return d;
                 },
-                dataSrc(data){
-                    return data||[];
+                dataSrc(data) {
+                    return data.data || [];
                 }
             },
 

@@ -5,16 +5,16 @@ class BorrowingBookHandler {
         console.log("Initialized borrowing view!")
         that.$table = $('#table');
         that._handleTheme();
-        that._loadTable();
         $('#create').on('click', that._createItem);
         that._role = localStorage.getItem('role');
         if (that._role != "admin")
             $('#create').remove();
-            
-        $('#filter').on('change',_=>{
+
+        that._loadTable();
+        $('#filter').on('change', _ => {
             that.dataTable.api().ajax.reload();
         });
-        
+
         that.$table.find('tbody').on('click', '.edit-item', e => {
             that._editItem($(e.target).parents('tr')[0]);
         });
@@ -96,8 +96,7 @@ class BorrowingBookHandler {
             title: 'Borrowed At',
             data: "borrowedAt",
             render: function (data, type, row, meta) {
-                let dateStr = $.dateTime.dateToString(new Date(data), 'HH:mm dd/MM/yyyy');
-                return dateStr.indexOf("1970") > -1 ? "" : dateStr;
+                return data ? new Date(data).toString('HH:mm dd/MM/yyyy') : "";
             }
         }, {
             title: 'Rent Price',
@@ -109,8 +108,7 @@ class BorrowingBookHandler {
             title: 'Returned At',
             data: "returnedAt",
             render: function (data, type, row, meta) {
-                let dateStr = $.dateTime.dateToString(new Date(data), 'HH:mm dd/MM/yyyy');
-                return dateStr.indexOf("1970") > -1 ? "" : dateStr;
+                return data ? new Date(data).toString('HH:mm dd/MM/yyyy') : "";
             }
         }, {
             title: 'Note',
@@ -143,13 +141,12 @@ class BorrowingBookHandler {
                 dataType: 'json',
                 url: "/library-management/borrowing-book/list",
                 data: function (d) {
-                    if (that._role != "admin")
-                        d.userId = localStorage.getItem('userid');
-                        d.status=Number($("#filter").val());
+                    d.userId = that._role != "admin" ? localStorage.getItem('userid') : 0;
+                    d.status = Number($("#filter").val());
                     return d;
                 },
-                dataSrc(data){
-                	return data||[];
+                dataSrc(data) {
+                    return data.data || [];
                 }
             },
 

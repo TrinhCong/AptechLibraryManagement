@@ -90,10 +90,11 @@ public class BorrowingBookRepository implements IBorrowingBookRepository {
 
 			if (bookExists != null) {
 				Transaction transaction = session.beginTransaction();
+				boolean oldReturned=bookExists.getReturnedAt()!=null;
+				boolean newReturned=theBorrowingBook.getReturnedAt()!=null;
 				
-				if(bookExists.getReturned()!=theBorrowingBook.getReturned()) {
-					bookExists.setReturned(theBorrowingBook.getReturned());
-					if(theBorrowingBook.getReturned()>0){
+				if(oldReturned!=newReturned) {
+					if(newReturned){
 						bookRepository.increaseQuantity(theBorrowingBook.getBookId(), theBorrowingBook.getQuantity());
 						bookExists.setReturnedAt(new Date());
 					}

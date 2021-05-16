@@ -1,6 +1,7 @@
 package aptech.library.management.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,8 +36,8 @@ public class BookController {
 			List<Book> theBooks = bookRepository.getBooks();
 
 			if(onlyAvailable)
-			theBooks=(java.util.List<Book>) theBooks.stream()
-				.filter(x -> x.getQuantity()>0);
+			theBooks= theBooks.stream()
+				.filter(x -> x.getQuantity()>0).collect(Collectors.toList());
 			return new SuccessResult(theBooks);
 		} catch (Exception ex) {
 			return new ErrorResult("An error has occured! Please try later!");

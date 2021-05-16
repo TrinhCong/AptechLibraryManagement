@@ -1,6 +1,7 @@
 package aptech.library.management.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,15 +40,15 @@ public class BorrowingBookController {
 		try {
 			List<BorrowingBook> theBorrowingBooks = borrowingBookRepository.getBorrowingBooks();
 			if(userId>0)
-			theBorrowingBooks=(java.util.List<BorrowingBook>) theBorrowingBooks.stream()
-				.filter(x -> x.getUserId()==userId);
+			theBorrowingBooks= theBorrowingBooks.stream()
+				.filter(x -> x.getUserId()==userId).collect(Collectors.toList());
 			if(status==1){
-				theBorrowingBooks=(java.util.List<BorrowingBook>) theBorrowingBooks.stream()
-					.filter(x -> x.getBorrowedAt()!=null&& x.getReturnedAt()==null);
+				theBorrowingBooks=theBorrowingBooks.stream()
+					.filter(x -> x.getBorrowedAt()!=null&& x.getReturnedAt()==null).collect(Collectors.toList());
 			}
 			else if(status==2){
-			theBorrowingBooks=(java.util.List<BorrowingBook>) theBorrowingBooks.stream()
-				.filter(x -> x.getReturnedAt()!=null);
+			theBorrowingBooks= theBorrowingBooks.stream()
+				.filter(x -> x.getReturnedAt()!=null).collect(Collectors.toList());
 			}
 			return new SuccessResult(theBorrowingBooks);
 		} catch (Exception ex) {

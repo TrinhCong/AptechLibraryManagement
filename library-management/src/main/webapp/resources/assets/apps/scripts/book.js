@@ -4,11 +4,12 @@ class BookHandler {
         var that = this;
         console.log("Book view Initialized!");
         that.$table = $('#table');
-        that._handleTheme();
-        that._loadTable();
 
         $('#create').on('click', that._createItem);
         that._role = localStorage.getItem('role');
+        
+        that._handleTheme();
+        that._loadTable();
         if (that._role != "admin")
             $('#create').remove();
 

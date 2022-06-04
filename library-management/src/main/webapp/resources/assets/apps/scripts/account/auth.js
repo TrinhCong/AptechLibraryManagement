@@ -1,5 +1,6 @@
 class AuthHandler {
     constructor() {
+        console.log("AuthHandler init");
         this._loadLoginInfo();
         this._navigate();
     }
